@@ -1,0 +1,509 @@
+@import "tailwindcss";
+
+/* ─── Theme Variables ─── */
+:root {
+  --color-bg: #f5ebe0;
+  --color-bg-warm: #eddcd2;
+  --color-brown: #6b4c3b;
+  --color-brown-light: #8b6f5e;
+  --color-brown-dark: #3d2b1f;
+  --color-tan: #c4a882;
+  --color-cream: #faf6ef;
+  --color-text: #4a3728;
+  --color-text-muted: rgba(74, 55, 40, 0.55);
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Cormorant Garamond', serif;
+  --font-script: 'Great Vibes', cursive;
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --font-sans: var(--font-body);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* ─── Hero ─── */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh; /* dynamic viewport height — handles mobile browser chrome */
+  text-align: center;
+  padding: 2rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Subtle retro vignette ─── */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(107, 76, 59, 0.06) 100%
+  );
+  pointer-events: none;
+}
+
+/* ─── Typography — fluid sizing ─── */
+.text-script {
+  font-family: var(--font-script);
+  color: var(--color-brown);
+}
+
+.text-serif {
+  font-family: var(--font-heading);
+  color: var(--color-brown-dark);
+  letter-spacing: 0.06em;
+}
+
+/* Couple names — fluid from 2.5rem (40px) → 6rem (96px) */
+.couple-names {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 1.1;
+  margin-top: 0.25rem;
+  word-break: keep-all;
+}
+
+/* Ampersand in script — fluid */
+.couple-amp {
+  font-size: clamp(1.75rem, 5vw, 3.75rem);
+  display: inline-block;
+  margin: 0 0.25rem;
+}
+
+/* Invitation sub text — fluid */
+.invitation-text {
+  font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+  max-width: 26rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+/* Pre-heading — fluid */
+.pre-heading {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+/* Date label */
+.date-label {
+  font-size: clamp(0.7rem, 1.5vw, 0.875rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-brown-light);
+  margin-bottom: 1rem;
+}
+
+/* ─── Ornament divider ─── */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.divider-line {
+  height: 1px;
+  width: clamp(30px, 8vw, 55px);
+  background: linear-gradient(90deg, transparent, var(--color-tan), transparent);
+}
+
+/* ─── Music note accents ─── */
+.note-accent {
+  color: var(--color-tan);
+  opacity: 0.2;
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Hide some notes on very small screens to avoid clutter */
+@media (max-width: 480px) {
+  .note-accent {
+    opacity: 0.12;
+  }
+  .note-hide-mobile {
+    display: none;
+  }
+}
+
+/* ─── Countdown cards ─── */
+.countdown-wrapper {
+  display: flex;
+  gap: clamp(0.5rem, 2vw, 1rem);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.countdown-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: clamp(60px, 16vw, 80px);
+  height: clamp(68px, 18vw, 90px);
+  border: 1px solid var(--color-tan);
+  border-radius: 10px;
+  background: rgba(250, 246, 239, 0.6);
+  flex-shrink: 0;
+}
+
+.countdown-number {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 4vw, 1.85rem);
+  font-weight: 600;
+  color: var(--color-brown-dark);
+  line-height: 1;
+}
+
+.countdown-label {
+  font-family: var(--font-body);
+  font-size: clamp(0.55rem, 1.2vw, 0.7rem);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-brown-light);
+  margin-top: 4px;
+}
+
+/* ─── Countdown section spacing ─── */
+.countdown-section {
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+/* ─── Fade-in ─── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in            { animation: fadeIn 1.2s ease forwards; }
+.fade-in-delay-1    { animation: fadeIn 1.2s ease 0.25s forwards; opacity: 0; }
+.fade-in-delay-2    { animation: fadeIn 1.2s ease 0.50s forwards; opacity: 0; }
+.fade-in-delay-3    { animation: fadeIn 1.2s ease 0.75s forwards; opacity: 0; }
+.fade-in-delay-4    { animation: fadeIn 1.2s ease 1.00s forwards; opacity: 0; }
+.fade-in-delay-5    { animation: fadeIn 1.2s ease 1.25s forwards; opacity: 0; }
+
+/* ══════════════════════════════════════════════
+   PLACE SECTION
+   ══════════════════════════════════════════════ */
+
+.place-section {
+  padding: clamp(3rem, 8vw, 5rem) clamp(1.25rem, 4vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background: var(--color-bg-warm);
+}
+
+/* ─── Heading ─── */
+.place-heading {
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.place-title {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  margin-top: 0.25rem;
+}
+
+.place-address {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
+/* ─── Venue location cards ─── */
+.venue-cards {
+  display: flex;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  width: 100%;
+  max-width: 600px;
+}
+
+.venue-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--color-tan);
+  border-radius: 12px;
+  background: rgba(250, 246, 239, 0.5);
+  flex: 1;
+  min-width: 220px;
+  text-align: left;
+}
+
+.venue-card-icon {
+  flex-shrink: 0;
+}
+
+.venue-pin {
+  width: clamp(22px, 3vw, 28px);
+  height: clamp(22px, 3vw, 28px);
+  color: var(--color-tan);
+}
+
+.venue-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.venue-card-label {
+  font-family: var(--font-heading);
+  font-size: clamp(0.65rem, 1.2vw, 0.75rem);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-brown-light);
+}
+
+.venue-card-place {
+  font-family: var(--font-heading);
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  color: var(--color-brown-dark);
+  letter-spacing: 0.03em;
+}
+
+/* ─── Carousel ─── */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto clamp(2rem, 5vw, 3rem);
+}
+
+.carousel-viewport {
+  position: relative;
+  height: clamp(200px, 40vw, 320px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-card {
+  position: absolute;
+  width: clamp(220px, 55vw, 340px);
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+.carousel-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    145deg,
+    var(--color-cream) 0%,
+    var(--color-bg) 100%
+  );
+  border: 1px solid var(--color-tan);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.carousel-placeholder-label {
+  font-family: var(--font-heading);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brown-light);
+}
+
+/* Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--color-tan);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  padding: 0;
+}
+
+.carousel-dot.active {
+  background: var(--color-tan);
+}
+
+/* Arrows */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(32px, 6vw, 40px);
+  height: clamp(32px, 6vw, 40px);
+  border-radius: 50%;
+  border: 1px solid var(--color-tan);
+  background: rgba(250, 246, 239, 0.8);
+  color: var(--color-brown);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  z-index: 5;
+  line-height: 1;
+  padding: 0;
+}
+
+.carousel-arrow:hover {
+  background: var(--color-cream);
+  border-color: var(--color-brown-light);
+}
+
+.carousel-arrow-left {
+  left: clamp(0.25rem, 2vw, 0.75rem);
+}
+
+.carousel-arrow-right {
+  right: clamp(0.25rem, 2vw, 0.75rem);
+}
+
+/* ─── Map ─── */
+.map-container {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--color-tan);
+  position: relative;
+}
+
+.map-iframe {
+  width: 100%;
+  height: clamp(250px, 45vw, 400px);
+  border: none;
+  display: block;
+}
+
+/* ─── Map overlay ─── */
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: clamp(0.5rem, 2vw, 1rem);
+  padding: clamp(0.6rem, 2vw, 1rem) clamp(0.75rem, 2vw, 1.25rem);
+  background: rgba(250, 246, 239, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(196, 168, 130, 0.4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.map-overlay-pin {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.map-overlay-icon {
+  width: clamp(16px, 2.5vw, 20px);
+  height: clamp(16px, 2.5vw, 20px);
+  color: var(--color-brown);
+  flex-shrink: 0;
+}
+
+.map-overlay-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.map-overlay-label {
+  font-family: var(--font-heading);
+  font-size: clamp(0.55rem, 1vw, 0.65rem);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-brown-light);
+  line-height: 1.2;
+}
+
+.map-overlay-place {
+  font-family: var(--font-heading);
+  font-size: clamp(0.72rem, 1.4vw, 0.85rem);
+  color: var(--color-brown-dark);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+/* ══════════════════════════════════════════════
+   MEDIA QUERIES
+   ══════════════════════════════════════════════ */
+
+/* ─── Tablet tweaks (768+) ─── */
+@media (min-width: 768px) {
+  .hero {
+    padding: 3rem 2rem;
+  }
+  .divider {
+    margin: 1.5rem 0;
+  }
+}
+
+/* ─── Landscape phones ─── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 1.5rem 1rem;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+  .divider {
+    margin: 0.5rem 0;
+  }
+  .countdown-section {
+    margin-top: 1rem;
+  }
+}
+
