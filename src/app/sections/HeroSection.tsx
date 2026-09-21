@@ -5,8 +5,7 @@ import {
   DoubleEighthNote,
 } from "../components/MusicIcons";
 
-/* Change this date when ready */
-const WEDDING_DATE = "2026-12-25T15:00:00";
+const WEDDING_DATE = "2026-12-21T15:00:00";
 
 export default function HeroSection() {
   return (
@@ -51,7 +50,7 @@ export default function HeroSection() {
       {/* ── Countdown ── */}
       <div className="countdown-section fade-in-delay-5">
         <p className="text-serif date-label">
-          December 25, 2026
+          December 21, 2026 · 3:00 PM
         </p>
         <CountdownTimer targetDate={WEDDING_DATE} />
       </div>

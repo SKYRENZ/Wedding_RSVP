@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { QuarterNote, EighthNote } from "../components/MusicIcons";
+import { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
+import { EighthNote } from "../components/MusicIcons";
 
 /* ─── Venue data ─── */
 const VENUE = {
@@ -24,18 +25,79 @@ const VENUE = {
 };
 
 const GALLERY_CARDS = [
-  { id: 1, label: "Ceremony" },
-  { id: 2, label: "Reception" },
-  { id: 3, label: "Garden" },
+  { id: 1, label: "Ceremony", src: "/place/ceremony.jpg" },
+  { id: 2, label: "Clubhouse", src: "/place/Don Jose Heights Clubhouse.jpg" },
+  { id: 3, label: "The Atrium", src: "/place/Don Jose Heights The Atrium.jpg" },
 ];
+
+const AUTO_PLAY_MS = 5000;
+const SWIPE_THRESHOLD = 50;
 
 export default function PlaceSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const dragStartX = useRef(0);
+  const dragging = useRef(false);
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const goTo = (index: number) => {
-    const total = GALLERY_CARDS.length;
-    setActiveIndex(((index % total) + total) % total);
+  const total = GALLERY_CARDS.length;
+
+  const goTo = useCallback(
+    (index: number) => {
+      setActiveIndex(((index % total) + total) % total);
+    },
+    [total]
+  );
+
+  /* ── Auto-advance every 5s ── */
+  useEffect(() => {
+    autoPlayRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % total);
+    }, AUTO_PLAY_MS);
+
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [total]);
+
+  /* Reset auto-play timer on manual interaction */
+  const resetAutoPlay = useCallback(() => {
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    autoPlayRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % total);
+    }, AUTO_PLAY_MS);
+  }, [total]);
+
+  /* ── Drag / swipe handlers ── */
+  const onDragStart = (clientX: number) => {
+    dragStartX.current = clientX;
+    dragging.current = true;
   };
+
+  const onDragEnd = (clientX: number) => {
+    if (!dragging.current) return;
+    dragging.current = false;
+    const diff = dragStartX.current - clientX;
+
+    if (Math.abs(diff) > SWIPE_THRESHOLD) {
+      if (diff > 0) {
+        goTo(activeIndex + 1);
+      } else {
+        goTo(activeIndex - 1);
+      }
+      resetAutoPlay();
+    }
+  };
+
+  /* Mouse events */
+  const handleMouseDown = (e: React.MouseEvent) => onDragStart(e.clientX);
+  const handleMouseUp = (e: React.MouseEvent) => onDragEnd(e.clientX);
+  const handleMouseLeave = (e: React.MouseEvent) => {
+    if (dragging.current) onDragEnd(e.clientX);
+  };
+
+  /* Touch events */
+  const handleTouchStart = (e: React.TouchEvent) => onDragStart(e.touches[0].clientX);
+  const handleTouchEnd = (e: React.TouchEvent) => onDragEnd(e.changedTouches[0].clientX);
 
   return (
     <section className="place-section">
@@ -76,9 +138,17 @@ export default function PlaceSection() {
         ))}
       </div>
 
-      {/* ── Image Carousel ── */}
+      {/* ── Image Carousel (drag + auto-play) ── */}
       <div className="carousel-container">
-        <div className="carousel-viewport">
+        <div
+          className="carousel-viewport"
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          style={{ cursor: "grab" }}
+        >
           {GALLERY_CARDS.map((card, i) => {
             const offset = i - activeIndex;
             return (
@@ -89,13 +159,18 @@ export default function PlaceSection() {
                   transform: `translateX(${offset * 105}%) scale(${offset === 0 ? 1 : 0.88})`,
                   opacity: Math.abs(offset) > 1 ? 0 : offset === 0 ? 1 : 0.5,
                   zIndex: offset === 0 ? 2 : 1,
+                  pointerEvents: "none",
                 }}
               >
-                {/* Placeholder — replace with <Image> later */}
-                <div className="carousel-placeholder">
-                  <QuarterNote className="w-6 text-[var(--color-tan)] opacity-40" />
-                  <span className="carousel-placeholder-label">{card.label}</span>
-                </div>
+                <Image
+                  src={card.src}
+                  alt={card.label}
+                  fill
+                  className="carousel-image"
+                  sizes="(max-width: 768px) 55vw, 340px"
+                  draggable={false}
+                />
+                <span className="carousel-image-label">{card.label}</span>
               </div>
             );
           })}
@@ -107,27 +182,11 @@ export default function PlaceSection() {
             <button
               key={card.id}
               className={`carousel-dot ${i === activeIndex ? "active" : ""}`}
-              onClick={() => goTo(i)}
+              onClick={() => { goTo(i); resetAutoPlay(); }}
               aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
-
-        {/* Arrows */}
-        <button
-          className="carousel-arrow carousel-arrow-left"
-          onClick={() => goTo(activeIndex - 1)}
-          aria-label="Previous slide"
-        >
-          ‹
-        </button>
-        <button
-          className="carousel-arrow carousel-arrow-right"
-          onClick={() => goTo(activeIndex + 1)}
-          aria-label="Next slide"
-        >
-          ›
-        </button>
       </div>
 
       {/* ── Map ── */}
