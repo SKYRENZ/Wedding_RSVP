@@ -1,11 +1,9 @@
-import HeroSection from "./sections/HeroSection";
-import PlaceSection from "./sections/PlaceSection";
+import Storybook from "./components/Storybook";
 
 export default function Home() {
   return (
     <main>
-      <HeroSection />
-      <PlaceSection />
+      <Storybook />
     </main>
   );
 }

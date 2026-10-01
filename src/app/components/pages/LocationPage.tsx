@@ -2,24 +2,24 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
-import { EighthNote } from "../components/MusicIcons";
 
 /* ─── Venue data ─── */
 const VENUE = {
   name: "Don Jose Heights",
-  address: "59 Doña Carmen Avenue, Don Jose Heights Subdivision, Brgy. Commonwealth, Quezon City",
+  address:
+    "59 Doña Carmen Avenue, Don Jose Heights Subdivision, Brgy. Commonwealth, Quezon City",
   mapLinkUrl:
     "https://www.google.com/maps/search/?api=1&query=59+Dona+Carmen+Ave,+Don+Jose+Heights+Subdivision,+Brgy.+Commonwealth,+Quezon+City",
   locations: [
     {
-      icon: "🎵",
       label: "Ceremony",
-      place: "Don Jose Heights — The Atrium",
+      place: "The Atrium",
+      time: "3:00 PM",
     },
     {
-      icon: "🎶",
       label: "Reception",
-      place: "Don Jose Heights — Clubhouse",
+      place: "Clubhouse",
+      time: "5:00 PM",
     },
   ],
 };
@@ -33,7 +33,7 @@ const GALLERY_CARDS = [
 const AUTO_PLAY_MS = 5000;
 const SWIPE_THRESHOLD = 50;
 
-export default function PlaceSection() {
+export default function LocationPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const dragStartX = useRef(0);
   const dragging = useRef(false);
@@ -48,7 +48,7 @@ export default function PlaceSection() {
     [total]
   );
 
-  /* ── Auto-advance every 5s ── */
+  /* Auto-advance */
   useEffect(() => {
     autoPlayRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % total);
@@ -59,7 +59,6 @@ export default function PlaceSection() {
     };
   }, [total]);
 
-  /* Reset auto-play timer on manual interaction */
   const resetAutoPlay = useCallback(() => {
     if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     autoPlayRef.current = setInterval(() => {
@@ -67,7 +66,7 @@ export default function PlaceSection() {
     }, AUTO_PLAY_MS);
   }, [total]);
 
-  /* ── Drag / swipe handlers ── */
+  /* Drag handlers */
   const onDragStart = (clientX: number) => {
     dragStartX.current = clientX;
     dragging.current = true;
@@ -77,69 +76,72 @@ export default function PlaceSection() {
     if (!dragging.current) return;
     dragging.current = false;
     const diff = dragStartX.current - clientX;
-
     if (Math.abs(diff) > SWIPE_THRESHOLD) {
-      if (diff > 0) {
-        goTo(activeIndex + 1);
-      } else {
-        goTo(activeIndex - 1);
-      }
+      goTo(diff > 0 ? activeIndex + 1 : activeIndex - 1);
       resetAutoPlay();
     }
   };
 
-  /* Mouse events */
-  const handleMouseDown = (e: React.MouseEvent) => onDragStart(e.clientX);
-  const handleMouseUp = (e: React.MouseEvent) => onDragEnd(e.clientX);
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onDragStart(e.clientX);
+  };
+  const handleMouseUp = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onDragEnd(e.clientX);
+  };
   const handleMouseLeave = (e: React.MouseEvent) => {
     if (dragging.current) onDragEnd(e.clientX);
   };
-
-  /* Touch events */
-  const handleTouchStart = (e: React.TouchEvent) => onDragStart(e.touches[0].clientX);
-  const handleTouchEnd = (e: React.TouchEvent) => onDragEnd(e.changedTouches[0].clientX);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    e.stopPropagation();
+    onDragStart(e.touches[0].clientX);
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    e.stopPropagation();
+    onDragEnd(e.changedTouches[0].clientX);
+  };
 
   return (
-    <section className="place-section">
-      {/* ── Heading ── */}
-      <div className="place-heading">
-        <div className="divider">
-          <span className="divider-line" />
-          <EighthNote className="w-4 text-[var(--color-tan)]" />
-          <span className="divider-line" />
+    <div className="story-page location-page">
+      {/* Chapter heading */}
+      <div className="chapter-heading">
+        <span className="chapter-number">Chapter Two</span>
+        <div className="story-divider" aria-hidden="true">
+          <span className="divider-vine left" />
+          <span className="divider-diamond">◆</span>
+          <span className="divider-vine right" />
         </div>
-        <p className="text-script pre-heading">The Celebration</p>
-        <h2 className="text-serif place-title">{VENUE.name}</h2>
-        <p className="place-address">{VENUE.address}</p>
+        <h2 className="chapter-title">The Celebration</h2>
       </div>
 
-      {/* ── Venue location cards ── */}
-      <div className="venue-cards">
+      {/* Venue name */}
+      <div className="location-venue">
+        <h3 className="venue-name">{VENUE.name}</h3>
+        <p className="venue-address">{VENUE.address}</p>
+      </div>
+
+      {/* Event timeline */}
+      <div className="event-timeline">
         {VENUE.locations.map((loc) => (
-          <div key={loc.label} className="venue-card">
-            <div className="venue-card-icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                aria-hidden="true"
-                className="venue-pin"
-              >
+          <div key={loc.label} className="timeline-item">
+            <div className="timeline-marker">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="timeline-icon">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
                 <circle cx="12" cy="9" r="2.5" />
               </svg>
             </div>
-            <div className="venue-card-text">
-              <span className="venue-card-label">{loc.label}</span>
-              <span className="venue-card-place">{loc.place}</span>
+            <div className="timeline-info">
+              <span className="timeline-label">{loc.label}</span>
+              <span className="timeline-place">{loc.place}</span>
+              <span className="timeline-time">{loc.time}</span>
             </div>
           </div>
         ))}
       </div>
 
-      {/* ── Image Carousel (drag + auto-play) ── */}
-      <div className="carousel-container">
+      {/* Photo carousel */}
+      <div className="story-carousel">
         <div
           className="carousel-viewport"
           onMouseDown={handleMouseDown}
@@ -167,7 +169,7 @@ export default function PlaceSection() {
                   alt={card.label}
                   fill
                   className="carousel-image"
-                  sizes="(max-width: 768px) 55vw, 340px"
+                  sizes="(max-width: 768px) 55vw, 280px"
                   draggable={false}
                 />
                 <span className="carousel-image-label">{card.label}</span>
@@ -176,34 +178,46 @@ export default function PlaceSection() {
           })}
         </div>
 
-        {/* Nav dots */}
+        {/* Dots */}
         <div className="carousel-dots">
           {GALLERY_CARDS.map((card, i) => (
             <button
               key={card.id}
               className={`carousel-dot ${i === activeIndex ? "active" : ""}`}
-              onClick={() => { goTo(i); resetAutoPlay(); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                goTo(i);
+                resetAutoPlay();
+              }}
               aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
       </div>
 
-      {/* ── Map Button ── */}
-      <div className="map-button-container">
-        <a
-          href={VENUE.mapLinkUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="map-button"
+      {/* Map Link */}
+      <a
+        href={VENUE.mapLinkUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="map-button"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <svg
+          className="map-button-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
         >
-          <svg className="map-button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-            <circle cx="12" cy="9" r="2.5" />
-          </svg>
-          Click to show in Map
-        </a>
-      </div>
-    </section>
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+          <circle cx="12" cy="9" r="2.5" />
+        </svg>
+        View on Map
+      </a>
+
+      <p className="story-footer-text">Dinner and Dancing to Follow</p>
+    </div>
   );
 }

@@ -30,9 +30,9 @@ export default function HeroSection() {
       </div>
 
       <h1 className="text-serif couple-names fade-in-delay-2">
-        Anjo
+        Anjo Lafayette
         <span className="text-script couple-amp">&amp;</span>
-        Pam
+        Pamila Mae
       </h1>
 
       <div className="divider fade-in-delay-3">
