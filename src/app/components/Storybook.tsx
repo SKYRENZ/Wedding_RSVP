@@ -4,6 +4,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import HeroPage from "./pages/HeroPage";
 import LocationPage from "./pages/LocationPage";
 import RSVPPage from "./pages/RSVPPage";
+import CoverPage from "./CoverPage";
 
 const PAGES = [
   { id: "hero", Component: HeroPage },
@@ -20,6 +21,7 @@ const PARTICLES = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
 }));
 
 export default function Storybook() {
+  const [showCover, setShowCover] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
   const [flipDirection, setFlipDirection] = useState<"next" | "prev">("next");
@@ -27,6 +29,10 @@ export default function Storybook() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
+
+  const handleOpenBook = useCallback(() => {
+    setShowCover(false);
+  }, []);
 
   /* Swipe support */
   const touchStartX = useRef(0);
@@ -92,6 +98,14 @@ export default function Storybook() {
       BaseComponent = PAGES[currentPage].Component;  // current stays underneath
       FlipComponent = PAGES[flipTarget].Component;   // previous flips into view
     }
+  }
+
+  if (showCover) {
+    return (
+      <div className="storybook-wrapper">
+        <CoverPage onOpen={handleOpenBook} />
+      </div>
+    );
   }
 
   return (
