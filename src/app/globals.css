@@ -193,7 +193,10 @@ body {
   position: absolute;
   width: clamp(60px, 15vw, 100px);
   height: clamp(60px, 15vw, 100px);
-  background: url('/storybook/corner-ornament.png') no-repeat center/contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='none' stroke='%23c4a882' stroke-width='1.2' opacity='0.8' d='M8 8 L8 32 M8 8 L32 8 M8 14 L14 8'/%3E%3Ccircle cx='8' cy='8' r='2.5' fill='%23c4a882' opacity='0.7'/%3E%3Cpath fill='none' stroke='%23c4a882' stroke-width='0.8' opacity='0.5' d='M16 8 Q20 12 24 8 M8 16 Q12 20 8 24'/%3E%3Ccircle cx='20' cy='20' r='1.5' fill='none' stroke='%23c4a882' stroke-width='0.8' opacity='0.4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   z-index: 3;
   opacity: 0.7;
   pointer-events: none;
@@ -1011,6 +1014,322 @@ body {
 .fade-in-delay-3    { animation: fadeIn 1s ease 0.6s forwards; opacity: 0; }
 .fade-in-delay-4    { animation: fadeIn 1s ease 0.8s forwards; opacity: 0; }
 .fade-in-delay-5    { animation: fadeIn 1s ease 1.0s forwards; opacity: 0; }
+
+/* ══════════════════════════════════════════════
+   RSVP PAGE (Page 3)
+   ══════════════════════════════════════════════ */
+
+.rsvp-page {
+  justify-content: flex-start;
+  padding-top: clamp(0.5rem, 1.5vw, 1rem);
+  gap: clamp(0.4rem, 1.2vw, 0.65rem);
+}
+
+.rsvp-deadline {
+  font-family: var(--font-body);
+  font-size: clamp(0.75rem, 1.6vw, 0.88rem);
+  color: var(--color-text-muted);
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+.rsvp-deadline strong {
+  color: var(--color-burgundy);
+  font-style: normal;
+}
+
+/* ─── Form layout ─── */
+.rsvp-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.3vw, 0.75rem);
+}
+
+.rsvp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  text-align: left;
+}
+
+.rsvp-label {
+  font-family: var(--font-heading);
+  font-size: clamp(0.62rem, 1.2vw, 0.72rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-brown-light);
+}
+
+.rsvp-required {
+  color: var(--color-burgundy);
+  margin-left: 2px;
+}
+
+/* ─── Input / Textarea / Select shared base ─── */
+.rsvp-input,
+.rsvp-textarea,
+.rsvp-select {
+  width: 100%;
+  background: rgba(250, 246, 239, 0.65);
+  border: 1px solid rgba(196, 168, 130, 0.55);
+  border-radius: 6px;
+  padding: clamp(0.4rem, 1vw, 0.55rem) clamp(0.6rem, 1.5vw, 0.85rem);
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 1.6vw, 0.95rem);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.rsvp-input::placeholder,
+.rsvp-textarea::placeholder {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.rsvp-input:focus,
+.rsvp-textarea:focus,
+.rsvp-select:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 2px rgba(196, 168, 130, 0.2);
+  background: rgba(250, 246, 239, 0.9);
+}
+
+.rsvp-textarea {
+  resize: none;
+  line-height: 1.5;
+}
+
+/* Select — custom arrow */
+.rsvp-field:has(.rsvp-select) {
+  position: relative;
+}
+
+.rsvp-field:has(.rsvp-select)::after {
+  content: "▾";
+  position: absolute;
+  right: 0.8rem;
+  bottom: clamp(0.4rem, 1vw, 0.55rem);
+  color: var(--color-gold-dark);
+  pointer-events: none;
+  font-size: 0.8rem;
+}
+
+/* ─── Radio buttons ─── */
+.rsvp-radio-group {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.rsvp-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: clamp(0.78rem, 1.5vw, 0.9rem);
+  color: var(--color-text);
+  font-style: italic;
+  position: relative;
+}
+
+.rsvp-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.rsvp-radio-custom {
+  display: inline-block;
+  width: clamp(14px, 2.5vw, 18px);
+  height: clamp(14px, 2.5vw, 18px);
+  border-radius: 50%;
+  border: 1.5px solid var(--color-gold);
+  background: rgba(250, 246, 239, 0.65);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.rsvp-radio:checked + .rsvp-radio-custom {
+  background: var(--color-burgundy);
+  border-color: var(--color-burgundy);
+  box-shadow: 0 0 0 3px rgba(109, 26, 54, 0.15);
+}
+
+/* ─── Submit button ─── */
+.rsvp-actions {
+  margin-top: 0.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.rsvp-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: clamp(0.55rem, 1.3vw, 0.75rem) clamp(1.5rem, 4vw, 2.25rem);
+  background: linear-gradient(135deg, var(--color-burgundy), #8b2252);
+  color: var(--color-cream);
+  font-family: var(--font-heading);
+  font-size: clamp(0.72rem, 1.5vw, 0.88rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 4px 14px rgba(109, 26, 54, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.rsvp-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(109, 26, 54, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, #7d1e40, var(--color-burgundy));
+}
+
+.rsvp-submit-btn:active {
+  transform: translateY(0);
+}
+
+.rsvp-btn-icon {
+  width: clamp(13px, 2vw, 16px);
+  height: clamp(13px, 2vw, 16px);
+}
+
+/* ─── Fallback link ─── */
+.rsvp-fallback-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: clamp(0.62rem, 1.2vw, 0.72rem);
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-style: italic;
+  transition: color 0.2s ease;
+  padding: 0;
+}
+
+.rsvp-fallback-link:hover {
+  color: var(--color-brown);
+}
+
+.rsvp-fallback-inline {
+  display: inline;
+}
+
+.rsvp-error-msg {
+  font-family: var(--font-body);
+  font-size: clamp(0.72rem, 1.4vw, 0.82rem);
+  color: var(--color-burgundy);
+  font-style: italic;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ─── Reminder callout ─── */
+.rsvp-reminder {
+  width: 100%;
+  background: rgba(109, 26, 54, 0.06);
+  border: 1px solid rgba(109, 26, 54, 0.2);
+  border-left: 3px solid var(--color-burgundy);
+  border-radius: 6px;
+  padding: clamp(0.45rem, 1.2vw, 0.65rem) clamp(0.65rem, 1.5vw, 0.9rem);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.rsvp-reminder-title {
+  font-family: var(--font-heading);
+  font-size: clamp(0.62rem, 1.2vw, 0.72rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-burgundy);
+  font-weight: 600;
+}
+
+.rsvp-reminder-body {
+  font-family: var(--font-body);
+  font-size: clamp(0.72rem, 1.4vw, 0.82rem);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.rsvp-reminder-note {
+  font-family: var(--font-body);
+  font-size: clamp(0.72rem, 1.4vw, 0.82rem);
+  color: var(--color-text);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.rsvp-reminder-note strong {
+  font-style: normal;
+  color: var(--color-brown-dark);
+}
+
+/* ─── iframe embed fallback ─── */
+.rsvp-iframe-wrap {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(196, 168, 130, 0.4);
+  background: rgba(250, 246, 239, 0.5);
+}
+
+.rsvp-iframe {
+  width: 100%;
+  height: 100%;
+  min-height: clamp(320px, 55vh, 520px);
+  border: none;
+}
+
+/* ─── Success screen ─── */
+.rsvp-success {
+  justify-content: center;
+  gap: clamp(0.65rem, 1.5vw, 1rem);
+}
+
+.wax-seal-success {
+  background: radial-gradient(
+    circle at 40% 35%,
+    #4a8a5a,
+    #2d6b40 60%,
+    #1a4228
+  );
+}
+
+.rsvp-success-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: var(--color-brown-dark);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.rsvp-success-text {
+  font-family: var(--font-body);
+  font-size: clamp(0.82rem, 1.7vw, 0.97rem);
+  color: var(--color-text-muted);
+  font-style: italic;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 300px;
+}
 
 /* ══════════════════════════════════════════════
    MEDIA QUERIES

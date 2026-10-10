@@ -1,19 +1,32 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import HeroPage from "./pages/HeroPage";
 import LocationPage from "./pages/LocationPage";
+import RSVPPage from "./pages/RSVPPage";
 
 const PAGES = [
   { id: "hero", Component: HeroPage },
   { id: "location", Component: LocationPage },
+  { id: "rsvp", Component: RSVPPage },
 ];
+
+/* Pre-computed particle positions — fixed seeds avoid hydration mismatch */
+const PARTICLE_COUNT = 12;
+const PARTICLES = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
+  left:     `${((i * 37 + 13) % 97).toFixed(4)}%`,
+  delay:    `${((i * 1.618 + 0.5) % 8).toFixed(4)}s`,
+  duration: `${(6 + (i * 0.9 + 0.3) % 6).toFixed(4)}s`,
+}));
 
 export default function Storybook() {
   const [currentPage, setCurrentPage] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
   const [flipDirection, setFlipDirection] = useState<"next" | "prev">("next");
   const [flipTarget, setFlipTarget] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
 
   /* Swipe support */
   const touchStartX = useRef(0);
@@ -83,20 +96,22 @@ export default function Storybook() {
 
   return (
     <div className="storybook-wrapper">
-      {/* Ambient particles */}
-      <div className="ambient-particles" aria-hidden="true">
-        {Array.from({ length: 12 }).map((_, i) => (
-          <span
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 8}s`,
-              animationDuration: `${6 + Math.random() * 6}s`,
-            }}
-          />
-        ))}
-      </div>
+      {/* Ambient particles — rendered client-side only to avoid hydration mismatch */}
+      {mounted && (
+        <div className="ambient-particles" aria-hidden="true">
+          {PARTICLES.map((p, i) => (
+            <span
+              key={i}
+              className="particle"
+              style={{
+                left: p.left,
+                animationDelay: p.delay,
+                animationDuration: p.duration,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       <div
         className="book-container"
