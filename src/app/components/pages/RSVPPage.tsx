@@ -14,11 +14,11 @@ const FORM_EMBED = `https://docs.google.com/forms/d/e/${FORM_ID}/viewform?embedd
    Update the values below once you have them.
    ─────────────────────────────────────────────────────────── */
 const ENTRY = {
-  name:    "entry.2005620554", // Name of Guest
-  contact: "entry.1045781291", // Contact Number
-  email:   "entry.839337160",  // Email Address
-  message: "entry.1166974658", // Message
-  attend:  "entry.1751300415", // Will you attend?
+  name:    "entry.867755506",  // Name of Guest
+  contact: "entry.1557163618", // Contact Number
+  email:   "entry.1314086610", // Email Address
+  message: "entry.162719962",  // Message
+  attend:  "entry.508119117",  // Will you attend?
 } as const;
 
 type Status = "idle" | "submitting" | "success" | "error";
