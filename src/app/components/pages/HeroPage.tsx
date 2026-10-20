@@ -10,8 +10,8 @@ export default function HeroPage() {
         <span className="seal-monogram">A&P</span>
       </div>
 
-      <p className="story-prelude fade-in">Once Upon a Time,</p>
-      <p className="story-subtitle fade-in-delay-1">Two Hearts Found Their Forever.</p>
+      <p className="story-prelude fade-in">Once upon a Melody,</p>
+      <p className="story-subtitle fade-in-delay-1">Two Hearts Found Each Other.</p>
 
       <div className="story-divider fade-in-delay-1" aria-hidden="true">
         <span className="divider-vine left" />

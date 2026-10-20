@@ -557,6 +557,47 @@ body {
    STORY PAGES — COMMON
    ══════════════════════════════════════════════ */
 
+.memory-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.memory-image-wrapper {
+  background: var(--color-parchment);
+  padding: clamp(0.5rem, 2vw, 1rem);
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 8px;
+}
+
+.memory-image {
+  border-radius: 4px;
+}
+
+.memory-phrase {
+  font-family: var(--font-script);
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  color: var(--color-burgundy);
+  letter-spacing: 0.03em;
+  text-align: center;
+  margin-top: clamp(0.8rem, 2.5vw, 1.2rem);
+  text-shadow: 0 1px 6px rgba(109, 26, 54, 0.15);
+  line-height: 1.3;
+  z-index: 2;
+}
+
+/* Scattered music notes & drumstick decorations — printed on parchment */
+.memory-deco {
+  position: absolute;
+  opacity: 0.3;
+  color: var(--color-brown);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
 .story-page {
   display: flex;
   flex-direction: column;
@@ -1533,9 +1574,14 @@ body {
   height: 100%;
   width: auto;
   flex-shrink: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
-@media (max-aspect-ratio: 928/1169) {
+@media (max-aspect-ratio: 940/1248) {
   .cover-book-frame {
     width: 100vw;
     height: 100dvh;
@@ -1588,89 +1634,6 @@ body {
   0%, 100% { opacity: 0.72; box-shadow: 0 0 12px rgba(212,175,60,0.22); }
   50%       { opacity: 1;   box-shadow: 0 0 30px rgba(212,175,60,0.55); }
 }
-
-/* ── Seal button (absolutely positioned by % over the printed seal) ── */
-.cover-seal-btn {
-  position: absolute;
-  width: 19%;
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  -webkit-tap-highlight-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.25s ease;
-  z-index: 5;
-}
-
-.cover-seal-btn:hover  { transform: translate(-50%, -50%) scale(1.06); }
-.cover-seal-btn:active { transform: translate(-50%, -50%) scale(0.95); }
-
-/* ─── Glow rings — radiate outward from the seal button ─── */
-.seal-glow-ring {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-/* Ring 1 — tight warm core */
-.seal-glow-ring-1 {
-  inset: -8%;
-  background: radial-gradient(circle,
-    rgba(255, 220, 100, 0.60) 0%,
-    rgba(212, 175, 60, 0.32) 42%,
-    transparent 68%
-  );
-  animation: glowPulse1 2.2s ease-in-out infinite;
-  mix-blend-mode: screen;
-}
-
-/* Ring 2 — mid halo */
-.seal-glow-ring-2 {
-  inset: -30%;
-  background: radial-gradient(circle,
-    rgba(255, 200, 80, 0.25) 0%,
-    rgba(212, 175, 60, 0.10) 48%,
-    transparent 70%
-  );
-  animation: glowPulse2 3.1s ease-in-out infinite;
-  mix-blend-mode: screen;
-}
-
-/* Ring 3 — outer soft aura */
-.seal-glow-ring-3 {
-  inset: -55%;
-  background: radial-gradient(circle,
-    rgba(255, 210, 100, 0.12) 0%,
-    rgba(196, 168, 130, 0.06) 52%,
-    transparent 78%
-  );
-  animation: glowPulse3 4s ease-in-out infinite;
-  mix-blend-mode: screen;
-}
-
-@keyframes glowPulse1 {
-  0%, 100% { opacity: 0.75; transform: scale(1);    }
-  50%       { opacity: 1;   transform: scale(1.10); }
-}
-@keyframes glowPulse2 {
-  0%, 100% { opacity: 0.55; transform: scale(1);    }
-  50%       { opacity: 0.90; transform: scale(1.12); }
-}
-@keyframes glowPulse3 {
-  0%, 100% { opacity: 0.40; transform: scale(1);    }
-  50%       { opacity: 0.75; transform: scale(1.15); }
-}
-
-/* On hover: speed up the animation */
-.cover-seal-btn:hover .seal-glow-ring-1 { animation-duration: 1.0s; }
-.cover-seal-btn:hover .seal-glow-ring-2 { animation-duration: 1.3s; }
-.cover-seal-btn:hover .seal-glow-ring-3 { animation-duration: 1.7s; }
 
 /* ══════════════════════════════════════════════
    MOTIF PAGE (Chapter Three)
