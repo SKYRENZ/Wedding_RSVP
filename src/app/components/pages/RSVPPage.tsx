@@ -32,7 +32,7 @@ export default function RSVPPage() {
     return (
       <div className="story-page rsvp-page">
         <div className="chapter-heading">
-          <span className="chapter-number">Chapter Three</span>
+          <span className="chapter-number">Chapter Five</span>
           <div className="story-divider" aria-hidden="true">
             <span className="divider-vine left" />
             <span className="divider-diamond">◆</span>
@@ -120,7 +120,7 @@ export default function RSVPPage() {
 
       {/* Chapter heading */}
       <div className="chapter-heading">
-        <span className="chapter-number">Chapter Three</span>
+        <span className="chapter-number">Chapter Five</span>
         <div className="story-divider" aria-hidden="true">
           <span className="divider-vine left" />
           <span className="divider-diamond">◆</span>
