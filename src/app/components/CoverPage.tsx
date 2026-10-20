@@ -7,9 +7,9 @@ interface CoverPageProps {
   onOpen: () => void;
 }
 
-/* Image is approximately 940 × 1248 px (portrait). */
-const IMG_W = 940;
-const IMG_H = 1248;
+/* Image is approximately 960 × 1280 px (portrait). */
+const IMG_W = 960;
+const IMG_H = 1280;
 
 export default function CoverPage({ onOpen }: CoverPageProps) {
   const [mounted, setMounted] = useState(false);
@@ -38,11 +38,11 @@ export default function CoverPage({ onOpen }: CoverPageProps) {
         aria-label="Open wedding invitation"
       >
         <Image
-          src="/storybook/Vintage Burgundy AP Music Journal Flat Lay.png"
+          src="/storybook/final cover book.png"
           alt="Wedding Keepsake Book Cover"
           fill
           priority
-          sizes="(max-aspect-ratio: 940/1248) 100vw, calc(100vh * 940 / 1248)"
+          sizes="(max-aspect-ratio: 960/1280) 100vw, calc(100vh * 960 / 1280)"
           className="cover-img"
         />
 
