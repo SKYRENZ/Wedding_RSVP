@@ -672,7 +672,8 @@ body {
    ══════════════════════════════════════════════ */
 
 .hero-page {
-  padding-top: 0;
+  justify-content: flex-start;
+  padding-top: clamp(1rem, 3vw, 1.5rem);
 }
 
 /* Hero Logo */
@@ -684,7 +685,7 @@ body {
 }
 
 .hero-logo-img {
-  width: clamp(120px, 36vw, 200px);
+  width: clamp(100px, 30vw, 170px);
   height: auto;
   object-fit: contain;
 }
