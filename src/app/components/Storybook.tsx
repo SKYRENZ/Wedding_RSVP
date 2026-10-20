@@ -2,20 +2,22 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import HeroPage from "./pages/HeroPage";
-import MemoryPage from "./pages/MemoryPage";
 import LocationPage from "./pages/LocationPage";
 import MotifPage from "./pages/MotifPage";
 import EntouragePage from "./pages/EntouragePage";
+import EntouragePage2 from "./pages/EntouragePage2";
 import RSVPPage from "./pages/RSVPPage";
+import MemoryPage from "./pages/MemoryPage";
 import CoverPage from "./CoverPage";
 
 const PAGES = [
   { id: "hero", Component: HeroPage },
-  { id: "memory", Component: MemoryPage },
   { id: "location", Component: LocationPage },
   { id: "motif", Component: MotifPage },
-  { id: "entourage", Component: EntouragePage },
+  { id: "entourage1", Component: EntouragePage },
+  { id: "entourage2", Component: EntouragePage2 },
   { id: "rsvp", Component: RSVPPage },
+  { id: "memory", Component: MemoryPage },
 ];
 
 /* Pre-computed particle positions — fixed seeds avoid hydration mismatch */

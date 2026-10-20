@@ -14,20 +14,17 @@ const VENUE = {
     {
       label: "Ceremony",
       place: "The Atrium",
-      time: "3:00 PM",
     },
     {
       label: "Reception",
       place: "Clubhouse",
-      time: "5:00 PM",
     },
   ],
 };
 
 const GALLERY_CARDS = [
-  { id: 1, label: "Ceremony", src: "/place/ceremony.jpg" },
-  { id: 2, label: "Clubhouse", src: "/place/Don Jose Heights Clubhouse.jpg" },
-  { id: 3, label: "The Atrium", src: "/place/Don Jose Heights The Atrium.jpg" },
+  { id: 1, label: "Clubhouse", src: "/place/Don Jose Heights Clubhouse.jpg" },
+  { id: 2, label: "The Atrium", src: "/place/Don Jose Heights The Atrium.jpg" },
 ];
 
 const AUTO_PLAY_MS = 5000;
@@ -121,7 +118,7 @@ export default function LocationPage() {
         <p className="venue-address">{VENUE.address}</p>
       </div>
 
-      {/* Event timeline */}
+      {/* Event timeline — no times shown */}
       <div className="event-timeline">
         {VENUE.locations.map((loc) => (
           <div key={loc.label} className="timeline-item">
@@ -134,13 +131,12 @@ export default function LocationPage() {
             <div className="timeline-info">
               <span className="timeline-label">{loc.label}</span>
               <span className="timeline-place">{loc.place}</span>
-              <span className="timeline-time">{loc.time}</span>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Photo carousel */}
+      {/* Photo carousel — only Clubhouse & Atrium */}
       <div className="story-carousel">
         <div
           className="carousel-viewport"
@@ -216,8 +212,6 @@ export default function LocationPage() {
         </svg>
         View on Map
       </a>
-
-      <p className="story-footer-text">Dinner and Dancing to Follow</p>
     </div>
   );
 }

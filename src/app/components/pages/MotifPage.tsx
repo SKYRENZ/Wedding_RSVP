@@ -19,18 +19,16 @@ export default function MotifPage() {
           <span className="divider-diamond">◆</span>
           <span className="divider-vine right" />
         </div>
-        <h2 className="chapter-title">Our Motif</h2>
+        <h2 className="chapter-title">Attire</h2>
       </div>
 
-      {/* ── Color Palette ── */}
+      {/* ── Color Palette (circle ring, no label) ── */}
       <section className="motif-section" aria-label="Color palette">
-        <p className="motif-section-label">Color Palette</p>
-
         <div className="palette-ring-wrap">
           {/* Centre image */}
           <div className="palette-center-img">
             <Image
-              src="/Color pallete/ebb384de-0100-41d7-a6e1-9ea20398736b.jfif"
+              src="/Color pallete/ebb384de-0100-41d7-a6e1-9ea20398736b.png"
               alt="Wedding color palette"
               fill
               sizes="(max-width: 600px) 80px, 100px"
@@ -61,52 +59,40 @@ export default function MotifPage() {
         <span className="divider-vine right" />
       </div>
 
-      {/* ── Preferred Clothing ── */}
-      <section className="motif-section" aria-label="Preferred clothing">
-        <p className="motif-section-label">Preferred Clothing</p>
-
-        {/* Principal Sponsor — full width */}
-        <div className="clothing-block clothing-block-full">
-          <div className="clothing-img-wrap clothing-img-principal">
+      {/* ── Principal Sponsors (2 images side by side) ── */}
+      <section className="motif-section" aria-label="Principal Sponsors attire">
+        <p className="attire-role-title">Principal Sponsors</p>
+        <div className="attire-principal-two-images">
+          <div className="attire-principal-img-wrap">
             <Image
-              src="/clothes/principal sponsor.jfif"
-              alt="Principal Sponsor attire"
-              fill
-              sizes="(max-width: 600px) 70vw, 280px"
-              className="clothing-img"
+              src="/clothes/Final clothes for prinicpal.png"
+              alt="Principal Sponsor attire — Burgundy & Navy Blue Gowns with Barong Tagalog"
+              width={480}
+              height={320}
+              className="attire-principal-img"
             />
           </div>
-          <p className="clothing-label">Principal Sponsor</p>
         </div>
-
-        {/* Bridesmaids + Groomsmen — two columns */}
-        <div className="clothing-row">
-          <div className="clothing-block">
-            <div className="clothing-img-wrap clothing-img-maid">
-              <Image
-                src="/clothes/bride's maid.jfif"
-                alt="Bridesmaid attire"
-                fill
-                sizes="(max-width: 600px) 40vw, 160px"
-                className="clothing-img"
-              />
-            </div>
-            <p className="clothing-label">Bridesmaids</p>
-          </div>
-
-          <div className="clothing-block">
-            <div className="clothing-img-wrap clothing-img-men">
-              <Image
-                src="/clothes/groom men.jfif"
-                alt="Groomsmen attire"
-                fill
-                sizes="(max-width: 600px) 40vw, 160px"
-                className="clothing-img"
-              />
-            </div>
-            <p className="clothing-label">Groomsmen</p>
-          </div>
+        <div className="attire-principal-text">
+          <p className="attire-desc">Ninong: Barong Tagalog</p>
+          <p className="attire-desc">Ninang: Burgundy or Navy Blue</p>
+          <p className="attire-desc">Gown or Formal Dress</p>
         </div>
+      </section>
+
+      <div className="story-divider" aria-hidden="true">
+        <span className="divider-vine left" />
+        <span className="divider-diamond">◆</span>
+        <span className="divider-vine right" />
+      </div>
+
+      {/* ── Guests ── */}
+      <section className="motif-section" aria-label="Guest attire">
+        <p className="attire-role-title">Guests</p>
+        <p className="attire-desc">Formal / Semi Formal</p>
+        <p className="attire-color-note">
+          We would love to see you in these colors
+        </p>
       </section>
 
     </div>
