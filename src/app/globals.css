@@ -673,46 +673,53 @@ body {
 
 .hero-page {
   justify-content: flex-start;
-  padding-top: clamp(1rem, 3vw, 1.5rem);
+  padding-top: clamp(.5rem, 3vw, 1.5rem);
 }
 
 /* Hero Logo */
 .hero-logo-wrap {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0;
+  margin-bottom: -1.5rem;
+  z-index: 0;
 }
 
 .hero-logo-img {
   width: clamp(100px, 30vw, 170px);
   height: auto;
   object-fit: contain;
+  position: relative;
+  z-index: 0;
 }
 
 /* Typography — darker colors for visibility */
 .story-prelude {
   font-family: var(--font-heading);
-  font-size: clamp(0.7rem, 1.5vw, 0.8rem);
-  letter-spacing: 0.25em;
+  font-size: clamp(0.58rem, 1.2vw, 0.7rem);
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-brown-dark);
 }
 
 .story-tagline {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-script);
-  font-size: clamp(1rem, 2.8vw, 1.3rem);
+  font-size: clamp(0.95rem, 2.4vw, 1.18rem);
   color: var(--color-burgundy);
   line-height: 1.5;
   letter-spacing: 0.03em;
-  transform: translateY(-1.2rem);
-  margin-bottom: 1.2rem;
+  transform: translateY(-2.1rem);
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
 }
 
 .story-subtitle {
   font-family: var(--font-heading);
-  font-size: clamp(0.65rem, 1.3vw, 0.75rem);
-  letter-spacing: 0.2em;
+  font-size: clamp(0.54rem, 1vw, 0.7rem);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-brown-dark);
 }
@@ -749,10 +756,10 @@ body {
 
 .story-vows {
   font-family: var(--font-heading);
-  font-size: clamp(0.65rem, 1.3vw, 0.75rem);
+  font-size: clamp(0.54rem, 1vw, 0.68rem);
   line-height: 1.7;
   color: var(--color-brown-dark);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   max-width: 320px;
 }
