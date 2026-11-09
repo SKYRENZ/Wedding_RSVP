@@ -92,7 +92,7 @@ export default function EntouragePage2() {
         <div className="entourage-secondary-sponsors">
           {Object.values(sec).map((s) => (
             <div key={s.label} className="secondary-sponsor-item">
-              <p className="secondary-sponsor-label">{s.label}</p>
+              <RoleTag>{s.label}</RoleTag>
               <p className="entourage-name">{s.groom}</p>
               <p className="entourage-name">{s.bride}</p>
             </div>
