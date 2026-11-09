@@ -1512,20 +1512,104 @@ body {
     padding: 32px 28px;
   }
 }
-
-/* Tablets (641–1024px) */
+/* Tablets & iPads (641–1024px) */
 @media (min-width: 641px) and (max-width: 1024px) {
+
+  /* ---- Book container: constrain to a centered book ---- */
+  .storybook-wrapper {
+    padding: 1.5rem;
+  }
+
+  .book-container {
+    max-width: 580px;
+    max-height: 92dvh;
+    border-radius: 12px;
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(196, 168, 130, 0.25);
+    overflow: hidden;
+  }
+
+  /* ---- Page inner & chrome ---- */
+  .page-inner {
+    border-radius: 12px;
+  }
+
   .page-content {
-    padding: 40px 36px;
+    padding: 42px 40px;
   }
 
   .page-ornament {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
+    opacity: 0.6;
+  }
+
+  .page-border {
+    inset: 22px;
+  }
+
+  /* ---- Story pages - general ---- */
+  .story-page {
+    gap: clamp(0.6rem, 1.6vw, 0.9rem);
+  }
+
+  .story-divider {
+    gap: 1rem;
+  }
+
+  .divider-vine {
+    width: clamp(40px, 8vw, 70px);
+  }
+
+  /* ---- Hero page ---- */
+  .hero-logo-img {
+    width: clamp(130px, 22vw, 180px);
   }
 
   .name-script {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .story-prelude {
+    font-size: clamp(0.65rem, 1vw, 0.78rem);
+  }
+
+  .story-tagline {
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  }
+
+  .story-invitation {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    max-width: 420px;
+  }
+
+  .story-vows {
+    font-size: clamp(0.6rem, 0.9vw, 0.72rem);
+    max-width: 380px;
+  }
+
+  .countdown-card {
+    width: clamp(60px, 10vw, 78px);
+    height: clamp(66px, 11vw, 84px);
+  }
+
+  .countdown-number {
+    font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  }
+
+  /* ---- Location page ---- */
+  .chapter-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  }
+
+  .venue-name {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  .venue-address {
+    font-size: clamp(0.78rem, 1.2vw, 0.9rem);
+    max-width: 400px;
   }
 
   .carousel-card {
@@ -1535,17 +1619,212 @@ body {
   .carousel-viewport {
     height: clamp(180px, 28vw, 260px);
   }
-}
 
-/* Desktop (1025px+) */
+  .map-button {
+    font-size: clamp(0.78rem, 1.2vw, 0.92rem);
+    padding: 0.7rem 1.8rem;
+  }
+
+  .timeline-item {
+    min-width: clamp(120px, 22vw, 160px);
+    padding: 0.7rem 1rem;
+  }
+
+  /* ---- Motif page ---- */
+  .palette-ring-wrap {
+    width: clamp(200px, 32vw, 260px);
+    height: clamp(200px, 32vw, 260px);
+  }
+
+  .swatch-circle {
+    width: clamp(34px, 5.5vw, 46px);
+    height: clamp(34px, 5.5vw, 46px);
+  }
+
+  .clothing-img-principal {
+    width: clamp(130px, 22vw, 180px);
+    height: clamp(120px, 20vw, 165px);
+  }
+
+  .clothing-img-maid,
+  .clothing-img-men {
+    width: clamp(100px, 17vw, 140px);
+    height: clamp(115px, 20vw, 170px);
+  }
+
+  .attire-principal-two-images .attire-principal-img-wrap {
+    width: clamp(100px, 18vw, 160px);
+  }
+
+  .attire-guest-dot {
+    width: clamp(36px, 6vw, 48px);
+    height: clamp(36px, 6vw, 48px);
+  }
+
+  /* ---- Entourage pages ---- */
+  .entourage-page {
+    gap: clamp(0.4rem, 1vw, 0.65rem);
+  }
+
+  .entourage-name {
+    font-size: clamp(0.72rem, 1.1vw, 0.85rem);
+  }
+
+  .entourage-name-featured {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+  }
+
+  .entourage-section-title {
+    font-size: clamp(0.82rem, 1.3vw, 0.98rem);
+  }
+
+  .entourage-role-tag {
+    font-size: clamp(0.65rem, 1vw, 0.78rem);
+  }
+
+  .secondary-sponsor-label {
+    font-size: clamp(0.65rem, 1vw, 0.78rem);
+  }
+
+  /* ---- Details page ---- */
+  .notebook-script-title {
+    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  }
+
+  .gift-content-layout {
+    max-width: 500px;
+    gap: clamp(1rem, 3vw, 1.6rem);
+  }
+
+  .qr-container-card {
+    width: clamp(160px, 28vw, 200px);
+  }
+
+  .gift-message-text,
+  .details-body-text {
+    font-size: clamp(0.98rem, 1.6vw, 1.12rem);
+  }
+
+  .notebook-hashtag-tag {
+    font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+    padding: 0.4rem 1.3rem;
+  }
+
+  /* ---- Prenup page ---- */
+  .prenup-video-wrapper {
+    max-width: min(500px, 88vw);
+  }
+
+  .prenup-tagline {
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    max-width: 480px;
+  }
+
+  .prenup-couple {
+    font-size: clamp(2rem, 3.5vw, 2.6rem);
+  }
+
+  /* ---- RSVP page ---- */
+  .rsvp-form {
+    max-width: 460px;
+    margin: 0 auto;
+    gap: clamp(0.6rem, 1.2vw, 0.85rem);
+  }
+
+  .rsvp-input,
+  .rsvp-textarea,
+  .rsvp-select {
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+    padding: 0.55rem 0.9rem;
+  }
+
+  .rsvp-label {
+    font-size: clamp(0.68rem, 1vw, 0.78rem);
+  }
+
+  .rsvp-radio-label {
+    font-size: clamp(0.85rem, 1.2vw, 0.98rem);
+  }
+
+  .rsvp-submit-btn {
+    font-size: clamp(0.8rem, 1.2vw, 0.92rem);
+    padding: 0.7rem 2.2rem;
+  }
+
+  .rsvp-reminder {
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .rsvp-deadline {
+    font-size: clamp(0.82rem, 1.2vw, 0.95rem);
+  }
+
+  .rsvp-success-heading {
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+  }
+
+  .rsvp-success-text {
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    max-width: 460px;
+  }
+
+  /* ---- RSVP modal ---- */
+  .rsvp-floating-panel {
+    max-width: 480px;
+  }
+
+  /* ---- Page navigation ---- */
+  .page-curl {
+    width: clamp(70px, 10vw, 95px);
+    height: clamp(70px, 10vw, 95px);
+  }
+
+  .page-indicator {
+    bottom: clamp(16px, 2vh, 24px);
+  }
+
+  .page-ind-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .turn-hint {
+    font-size: clamp(0.82rem, 1.3vw, 0.95rem);
+  }
+
+  /* ---- Memory page ---- */
+  .memory-phrase {
+    font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+  }
+}
+/* Desktop & large tablets in landscape (1025px+) */
 @media (min-width: 1025px) {
+  .storybook-wrapper {
+    padding: 2rem;
+  }
+
+  .book-container {
+    max-width: 560px;
+    max-height: 90dvh;
+    border-radius: 14px;
+    box-shadow:
+      0 12px 50px rgba(0, 0, 0, 0.55),
+      0 0 0 1px rgba(196, 168, 130, 0.3);
+    overflow: hidden;
+  }
+
+  .page-inner {
+    border-radius: 14px;
+  }
+
   .page-content {
     padding: 48px 56px;
   }
 
   .page-ornament {
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
   }
 
   .page-border {
@@ -1571,7 +1850,105 @@ body {
   .venue-address {
     max-width: 420px;
   }
+
+  /* RSVP form */
+  .rsvp-form {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .rsvp-reminder {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  /* Details page */
+  .gift-content-layout {
+    max-width: 480px;
+  }
+
+  .qr-container-card {
+    width: clamp(170px, 24vw, 200px);
+  }
+
+  /* Prenup video */
+  .prenup-video-wrapper {
+    max-width: 480px;
+  }
+
+  /* Page navigation */
+  .page-curl {
+    width: clamp(80px, 8vw, 100px);
+    height: clamp(80px, 8vw, 100px);
+  }
+
+  .page-ind-dot {
+    width: 8px;
+    height: 8px;
+  }
 }
+/* Landscape tablets & iPads */
+@media (min-width: 641px) and (max-height: 640px) and (orientation: landscape) {
+  .storybook-wrapper {
+    padding: 0.75rem 2rem;
+  }
+
+  .book-container {
+    max-width: 480px;
+    max-height: 96dvh;
+  }
+
+  .page-content {
+    padding: 20px 32px;
+  }
+
+  .story-page {
+    gap: 0.3rem;
+  }
+
+  .page-ornament {
+    width: 50px;
+    height: 50px;
+    opacity: 0.4;
+  }
+
+  .page-border {
+    inset: 14px;
+  }
+
+  .hero-logo-img {
+    width: clamp(80px, 14vw, 120px);
+  }
+
+  .name-script {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  }
+
+  .chapter-title {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  }
+
+  .countdown-card {
+    width: 48px;
+    height: 54px;
+  }
+
+  .wax-seal {
+    width: 38px;
+    height: 38px;
+  }
+
+  .prenup-video-wrapper {
+    max-width: min(360px, 70vw);
+  }
+
+  .palette-ring-wrap {
+    width: clamp(130px, 22vw, 180px);
+    height: clamp(130px, 22vw, 180px);
+  }
+}
+
+
 
 /* Landscape phones */
 @media (max-height: 500px) and (orientation: landscape) {
