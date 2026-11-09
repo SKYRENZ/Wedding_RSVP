@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 const FORM_ID =
   "1FAIpQLSdtioik7IDTcJMUC7e9pnlnJokWamsAQpV98KtieQTdJFrm_Q";
@@ -23,16 +24,145 @@ const ENTRY = {
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+/* Hand-written calligraphy checkmark */
+function HandwrittenCheckIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 48 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-hidden="true"
+    >
+      <path
+        d="M10 24 C12.5 26.5 16 32 19 37 C24 26.8 31 16.5 39.5 10"
+        stroke="currentColor"
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+interface SavedRsvpState {
+  status: Status;
+  name: string;
+  contact: string;
+  email: string;
+  attend: string;
+  message: string;
+}
+
+/* In-memory state preserved across page flips; resets only on page reload */
+const savedRsvpState: SavedRsvpState = {
+  status: "idle",
+  name: "",
+  contact: "",
+  email: "",
+  attend: "",
+  message: "",
+};
+
 export default function RSVPPage() {
-  const [status, setStatus] = useState<Status>("idle");
+  const [status, setStatus] = useState<Status>(savedRsvpState.status);
   const [showEmbedded, setShowEmbedded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!showModal) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setShowModal(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [showModal]);
+
+  const confirmationModal =
+    showModal && mounted && typeof document !== "undefined"
+      ? createPortal(
+          <div
+            className="rsvp-floating-overlay"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="rsvp-modal-title"
+            onClick={() => setShowModal(false)}
+          >
+            <div
+              className="rsvp-floating-panel"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="rsvp-modal-close-icon"
+                onClick={() => setShowModal(false)}
+                aria-label="Close confirmation"
+              >
+                ✕
+              </button>
+
+              <div className="wax-seal wax-seal-success" aria-hidden="true">
+                <HandwrittenCheckIcon className="handwritten-check-icon" />
+              </div>
+
+              <h3 id="rsvp-modal-title" className="rsvp-modal-title">
+                RSVP Confirmed
+              </h3>
+
+              <div className="story-divider" aria-hidden="true">
+                <span className="divider-vine left" />
+                <span className="divider-diamond">◆</span>
+                <span className="divider-vine right" />
+              </div>
+
+              <p className="rsvp-modal-message">
+                Thank you for confirming! We’re delighted to have you be part of our special day. We look forward to celebrating this beautiful chapter with you
+              </p>
+
+              <div className="story-divider" aria-hidden="true">
+                <span className="divider-vine left" />
+                <span className="divider-diamond">◆</span>
+                <span className="divider-vine right" />
+              </div>
+
+              <div className="rsvp-modal-assistance-card">
+                <p className="rsvp-modal-assistance">
+                  For assistance kindly Contact Mrs Vicky Derla
+                </p>
+              </div>
+
+              <p className="rsvp-modal-couple">
+                With love,
+                <br />
+                <span className="name-script">Anjo &amp; Pam</span>
+              </p>
+
+              <button
+                type="button"
+                className="rsvp-modal-action-btn"
+                onClick={() => setShowModal(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>,
+          document.body
+        )
+      : null;
 
   /* ─── Embedded Google Form fallback ─── */
   if (showEmbedded) {
     return (
       <div className="story-page rsvp-page">
         <div className="chapter-heading">
-          <span className="chapter-number">Chapter Five</span>
+          <span className="chapter-number">Chapter Six</span>
           <div className="story-divider" aria-hidden="true">
             <span className="divider-vine left" />
             <span className="divider-diamond">◆</span>
@@ -74,7 +204,7 @@ export default function RSVPPage() {
     return (
       <div className="story-page rsvp-page rsvp-success">
         <div className="wax-seal wax-seal-success" aria-hidden="true">
-          <span className="seal-monogram">✓</span>
+          <HandwrittenCheckIcon className="handwritten-check-icon" />
         </div>
         <div className="story-divider" aria-hidden="true">
           <span className="divider-vine left" />
@@ -85,9 +215,13 @@ export default function RSVPPage() {
           Your RSVP has been received!
         </h2>
         <p className="rsvp-success-text">
-          Thank you for letting us know. We can&apos;t wait to celebrate
-          with you on our special day.
+          Thank you for confirming! We’re delighted to have you be part of our special day. We look forward to celebrating this beautiful chapter with you
         </p>
+        <div className="rsvp-modal-assistance-card" style={{ maxWidth: 360 }}>
+          <p className="rsvp-modal-assistance">
+            For assistance kindly Contact Mrs Vicky Derla
+          </p>
+        </div>
         <div className="story-divider" aria-hidden="true">
           <span className="divider-vine left" />
           <span className="divider-diamond">◆</span>
@@ -98,6 +232,14 @@ export default function RSVPPage() {
           <br />
           Anjo &amp; Pam
         </p>
+        <button
+          type="button"
+          className="rsvp-reopen-btn"
+          onClick={() => setShowModal(true)}
+        >
+          View Confirmation Details
+        </button>
+        {confirmationModal}
       </div>
     );
   }
@@ -105,14 +247,28 @@ export default function RSVPPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("submitting");
+    savedRsvpState.status = "submitting";
     const formData = new FormData(e.currentTarget);
+    savedRsvpState.name = (formData.get(ENTRY.name) as string) || "";
+    savedRsvpState.contact = (formData.get(ENTRY.contact) as string) || "";
+    savedRsvpState.email = (formData.get(ENTRY.email) as string) || "";
+    savedRsvpState.attend = (formData.get(ENTRY.attend) as string) || "";
+    savedRsvpState.message = (formData.get(ENTRY.message) as string) || "";
+
     fetch(FORM_ACTION, {
       method: "POST",
       mode: "no-cors",
       body: formData,
     })
-      .then(() => setStatus("success"))
-      .catch(() => setStatus("error"));
+      .then(() => {
+        savedRsvpState.status = "success";
+        setStatus("success");
+        setShowModal(true);
+      })
+      .catch(() => {
+        savedRsvpState.status = "error";
+        setStatus("error");
+      });
   };
 
   return (
@@ -120,7 +276,7 @@ export default function RSVPPage() {
 
       {/* Chapter heading */}
       <div className="chapter-heading">
-        <span className="chapter-number">Chapter Five</span>
+        <span className="chapter-number">Chapter Six</span>
         <div className="story-divider" aria-hidden="true">
           <span className="divider-vine left" />
           <span className="divider-diamond">◆</span>
@@ -172,6 +328,10 @@ export default function RSVPPage() {
             name={ENTRY.name}
             type="text"
             required
+            defaultValue={savedRsvpState.name}
+            onChange={(e) => {
+              savedRsvpState.name = e.target.value;
+            }}
             placeholder="Your full name"
             className="rsvp-input"
             onClick={(e) => e.stopPropagation()}
@@ -188,6 +348,7 @@ export default function RSVPPage() {
             name={ENTRY.contact}
             type="tel"
             required
+            defaultValue={savedRsvpState.contact}
             placeholder="e.g. 09XX XXX XXXX"
             className="rsvp-input"
             maxLength={11}
@@ -202,6 +363,7 @@ export default function RSVPPage() {
             onInput={(e) => {
               const el = e.currentTarget;
               el.value = el.value.replace(/\D/g, "").slice(0, 11);
+              savedRsvpState.contact = el.value;
             }}
             onClick={(e) => e.stopPropagation()}
           />
@@ -216,6 +378,10 @@ export default function RSVPPage() {
             id="rsvp-email"
             name={ENTRY.email}
             type="email"
+            defaultValue={savedRsvpState.email}
+            onChange={(e) => {
+              savedRsvpState.email = e.target.value;
+            }}
             placeholder="your@email.com"
             className="rsvp-input"
             onClick={(e) => e.stopPropagation()}
@@ -238,6 +404,10 @@ export default function RSVPPage() {
                   name={ENTRY.attend}
                   value={opt.value}
                   required
+                  defaultChecked={savedRsvpState.attend === opt.value}
+                  onChange={(e) => {
+                    savedRsvpState.attend = e.target.value;
+                  }}
                   className="rsvp-radio"
                   onClick={(e) => e.stopPropagation()}
                 />
@@ -257,6 +427,10 @@ export default function RSVPPage() {
             id="rsvp-message"
             name={ENTRY.message}
             rows={2}
+            defaultValue={savedRsvpState.message}
+            onChange={(e) => {
+              savedRsvpState.message = e.target.value;
+            }}
             placeholder="A note for the couple…"
             className="rsvp-textarea"
             onClick={(e) => e.stopPropagation()}
@@ -301,6 +475,8 @@ export default function RSVPPage() {
       >
         Prefer to use Google&apos;s form instead?
       </button>
+
+      {confirmationModal}
     </div>
   );
 }

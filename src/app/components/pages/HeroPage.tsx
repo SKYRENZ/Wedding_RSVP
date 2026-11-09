@@ -22,8 +22,9 @@ export default function HeroPage() {
         Once upon a melody,<br />two hearts found each other
       </p>
 
-      <p className="story-prelude fade-in-delay-1">Together with their families</p>
-      <p className="story-subtitle fade-in-delay-1">you are cordially invited to the wedding of</p>
+      <p className="story-prelude fade-in-delay-1">Together in Faith, in Love,</p>
+          <p className="story-prelude fade-in-delay-1">and in His Purpose</p>
+      <p className="story-subtitle fade-in-delay-1">you are Cordially invited to the Wedding Celebration of</p>
 
       <div className="story-divider fade-in-delay-1" aria-hidden="true">
         <span className="divider-vine left" />
@@ -38,8 +39,8 @@ export default function HeroPage() {
       </h1>
 
       <p className="story-vows fade-in-delay-3">
-        As they exchange vows<br />
-        and begin their greatest adventure together
+        As they exchange vows And Turn the page<br />
+        to begin their greatest adventure together
       </p>
 
       <div className="story-divider fade-in-delay-3" aria-hidden="true">

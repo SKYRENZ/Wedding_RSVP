@@ -1,21 +1,25 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
+import PrenupPage from "./pages/PrenupPage";
 import HeroPage from "./pages/HeroPage";
 import LocationPage from "./pages/LocationPage";
 import MotifPage from "./pages/MotifPage";
 import EntouragePage from "./pages/EntouragePage";
 import EntouragePage2 from "./pages/EntouragePage2";
+import DetailsPage from "./pages/DetailsPage";
 import RSVPPage from "./pages/RSVPPage";
 import MemoryPage from "./pages/MemoryPage";
 import CoverPage from "./CoverPage";
 
 const PAGES = [
   { id: "hero", Component: HeroPage },
+  { id: "prenup", Component: PrenupPage },
   { id: "location", Component: LocationPage },
   { id: "motif", Component: MotifPage },
   { id: "entourage1", Component: EntouragePage },
   { id: "entourage2", Component: EntouragePage2 },
+  { id: "details", Component: DetailsPage },
   { id: "rsvp", Component: RSVPPage },
   { id: "memory", Component: MemoryPage },
 ];
@@ -59,6 +63,10 @@ export default function Storybook() {
       setFlipDirection(direction);
       setFlipTarget(target);
       setIsFlipping(true);
+
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("storybook:page-flip"));
+      }
 
       setTimeout(() => {
         setCurrentPage(target);
