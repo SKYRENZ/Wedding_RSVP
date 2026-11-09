@@ -865,10 +865,13 @@ body {
 
 .venue-address {
   font-family: var(--font-body);
-  font-size: clamp(0.7rem, 1.5vw, 0.8rem);
-  color: var(--color-text-muted);
-  max-width: 320px;
-  line-height: 1.5;
+  font-size: clamp(0.85rem, 1.8vw, 1.02rem);
+  font-weight: 600;
+  color: var(--color-brown-dark);
+  max-width: 380px;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 /* Event timeline */
@@ -1608,8 +1611,8 @@ body {
   }
 
   .venue-address {
-    font-size: clamp(0.78rem, 1.2vw, 0.9rem);
-    max-width: 400px;
+    font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+    max-width: 440px;
   }
 
   .carousel-card {
@@ -1831,7 +1834,8 @@ body {
   }
 
   .venue-address {
-    max-width: 420px;
+    font-size: 1.05rem;
+    max-width: 460px;
   }
 }
 
