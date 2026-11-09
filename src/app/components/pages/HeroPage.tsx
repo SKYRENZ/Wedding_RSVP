@@ -11,8 +11,8 @@ export default function HeroPage() {
         <Image
           src="/logo/Wordlogo ate transparent.png"
           alt="A&P Wedding Logo"
-          width={320}
-          height={260}
+          width={1568}
+          height={1088}
           className="hero-logo-img"
           priority
         />
