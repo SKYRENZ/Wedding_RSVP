@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
-import PrenupPage from "./pages/PrenupPage";
+import PreludePage from "./pages/PreludePage";
 import HeroPage from "./pages/HeroPage";
+import PrenupPage from "./pages/PrenupPage";
 import LocationPage from "./pages/LocationPage";
 import MotifPage from "./pages/MotifPage";
 import EntouragePage from "./pages/EntouragePage";
@@ -13,6 +14,7 @@ import MemoryPage from "./pages/MemoryPage";
 import CoverPage from "./CoverPage";
 
 const PAGES = [
+  { id: "prelude", Component: PreludePage },
   { id: "hero", Component: HeroPage },
   { id: "prenup", Component: PrenupPage },
   { id: "location", Component: LocationPage },

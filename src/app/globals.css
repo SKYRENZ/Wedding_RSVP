@@ -3002,3 +3002,119 @@ body {
   background: rgba(45, 107, 64, 0.2);
   border-color: #2d6b40;
 }
+
+/* ══════════════════════════════════════════════
+   PRELUDE PAGE (Page 1 - Love Story Letter)
+   ══════════════════════════════════════════════ */
+
+.prelude-page {
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  max-width: 520px;
+  min-height: 100%;
+  margin: 0 auto;
+  padding-top: clamp(0.2rem, 0.8vw, 0.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  gap: clamp(0.35rem, 0.8vw, 0.6rem);
+  text-align: center;
+}
+
+.prelude-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: clamp(0.2rem, 0.5vw, 0.35rem);
+  margin-bottom: clamp(0.25rem, 0.8vw, 0.5rem);
+}
+
+.prelude-title {
+  font-family: var(--font-script);
+  font-size: clamp(2.8rem, 6.5vw, 3.8rem);
+  color: var(--color-brown-dark);
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.prelude-letter-body {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.3rem, 0.8vw, 0.5rem);
+  width: 100%;
+  padding: 0 clamp(0.8rem, 2.5vw, 1.6rem);
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.prelude-para {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(0.78rem, 1.25vw, 0.92rem);
+  line-height: clamp(1.42, 1.5vw, 1.58);
+  color: #432e22;
+  letter-spacing: 0.005em;
+  text-align: center;
+  margin: 0;
+}
+
+.prelude-accent-line {
+  font-size: clamp(0.82rem, 1.3vw, 0.96rem);
+  font-weight: 500;
+  color: #382418;
+  margin: clamp(0.06rem, 0.25vw, 0.14rem) 0;
+}
+
+.prelude-closing {
+  margin-top: clamp(0.4rem, 1vw, 0.8rem);
+  padding-bottom: 0.25rem;
+}
+
+.prelude-forever {
+  font-family: var(--font-script);
+  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+  color: var(--color-brown-dark);
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* Extra small screens */
+@media (max-width: 380px) {
+  .prelude-title {
+    font-size: 2.3rem;
+  }
+  .prelude-letter-body {
+    padding: 0 0.5rem;
+    gap: 0.26rem;
+  }
+  .prelude-para {
+    font-size: 0.74rem;
+    line-height: 1.38;
+  }
+  .prelude-forever {
+    font-size: 1.5rem;
+  }
+}
+
+/* Landscape / short screens */
+@media (max-height: 500px) and (orientation: landscape) {
+  .prelude-title {
+    font-size: 1.8rem;
+  }
+  .prelude-letter-body {
+    padding: 0 0.6rem;
+    gap: 0.2rem;
+  }
+  .prelude-para {
+    font-size: 0.72rem;
+    line-height: 1.32;
+  }
+  .prelude-forever {
+    font-size: 1.35rem;
+  }
+}
