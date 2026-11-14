@@ -38,11 +38,6 @@ export default function HeroPage() {
         <span className="name-script">Pamila Mae</span>
       </h1>
 
-      <p className="story-vows fade-in-delay-3">
-        As they exchange vows And Turn the page<br />
-        to begin their greatest adventure together
-      </p>
-
       <div className="story-divider fade-in-delay-3" aria-hidden="true">
         <span className="divider-vine left" />
         <span className="divider-diamond">◆</span>

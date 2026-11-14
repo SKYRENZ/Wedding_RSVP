@@ -30,9 +30,9 @@ export default function DetailsPage() {
       {/* ─── SECTION 1: A GIFT OF LOVE (Monetary Gift) ─── */}
       <section className="details-section gift-section fade-in-delay-1">
         <div className="notebook-title-wrap">
-          <span className="notebook-flourish" aria-hidden="true">❦</span>
+
           <h3 className="notebook-script-title">A Gift of Love</h3>
-          <span className="notebook-flourish" aria-hidden="true">❦</span>
+
         </div>
 
         <div className="gift-content-layout">
@@ -68,28 +68,23 @@ export default function DetailsPage() {
       {/* ─── SECTION 2: UNPLUGGED CEREMONY ─── */}
       <section className="details-section unplugged-section fade-in-delay-2">
         <div className="notebook-title-wrap">
-          <span className="notebook-flourish" aria-hidden="true">❦</span>
+
           <h3 className="notebook-script-title">Unplugged Ceremony</h3>
-          <span className="notebook-flourish" aria-hidden="true">❦</span>
+
         </div>
         <p className="details-body-text">
           We have invited a team to help us capture this day. So just be present and keep our ceremony camera free just until we say “I do”
         </p>
       </section>
 
-      {/* Gentle Notebook Divider */}
-      <div className="notebook-divider" aria-hidden="true">
-        <span className="notebook-divider-line" />
-        <span className="notebook-divider-icon">◆</span>
-        <span className="notebook-divider-line" />
-      </div>
+
 
       {/* ─── SECTION 3: WEDDING HASHTAG ─── */}
       <section className="details-section hashtag-section fade-in-delay-3">
         <div className="notebook-title-wrap">
-          <span className="notebook-flourish" aria-hidden="true">❦</span>
+
           <h3 className="notebook-script-title">Wedding Hashtag</h3>
-          <span className="notebook-flourish" aria-hidden="true">❦</span>
+
         </div>
         <p className="details-body-text">
           Help us capture the love and use our official hashtags

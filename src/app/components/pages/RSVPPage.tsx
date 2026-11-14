@@ -134,7 +134,10 @@ export default function RSVPPage() {
 
               <div className="rsvp-modal-assistance-card">
                 <p className="rsvp-modal-assistance">
-                  For assistance kindly Contact Mrs Vicky Derla
+                  For assistance kindly Contact Mrs Vicky Derla:{" "}
+                  <a href="tel:09162728940" className="rsvp-modal-phone">
+                    0916 272 8940
+                  </a>
                 </p>
               </div>
 
@@ -171,7 +174,7 @@ export default function RSVPPage() {
           <h2 className="chapter-title">Reply to Our Story</h2>
         </div>
         <p className="rsvp-deadline">
-          Kindly reply on or before <strong>November 30, 2026</strong>
+          Kindly reply on or before <strong>November 21, 2026</strong>
         </p>
         <div className="rsvp-iframe-wrap">
           <iframe
@@ -219,7 +222,10 @@ export default function RSVPPage() {
         </p>
         <div className="rsvp-modal-assistance-card" style={{ maxWidth: 360 }}>
           <p className="rsvp-modal-assistance">
-            For assistance kindly Contact Mrs Vicky Derla
+            For assistance kindly Contact Mrs Vicky Derla:{" "}
+            <a href="tel:09162728940" className="rsvp-modal-phone">
+              0916 272 8940
+            </a>
           </p>
         </div>
         <div className="story-divider" aria-hidden="true">
@@ -286,7 +292,7 @@ export default function RSVPPage() {
       </div>
 
       <p className="rsvp-deadline">
-        Kindly reply on or before <strong>November 30, 2026</strong>
+        Kindly reply on or before <strong>November 21, 2026</strong>
       </p>
 
       {/* Reminder callout */}

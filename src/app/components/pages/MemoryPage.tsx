@@ -1,19 +1,17 @@
 import Image from "next/image";
 
-/* Scattered music notes — margins only, no overlap with photo */
+/* Scattered music notes — margins only, no overlap with photo or text */
 const DECO = [
   /* Top area */
-  { symbol: "♪",  top: "3%",  left: "12%", size: "1.6rem", rotate: "-15deg" },
-  { symbol: "♫",  top: "6%",  left: "45%", size: "1.4rem", rotate: "12deg" },
-  { symbol: "𝄞",  top: "4%",  left: "88%", size: "1.8rem", rotate: "-8deg" },
+  { symbol: "♪",  top: "3%",  left: "10%", size: "1.5rem", rotate: "-15deg" },
+  { symbol: "𝄞",  top: "3.5%", left: "88%", size: "1.7rem", rotate: "-8deg" },
   /* Left side */
-  { symbol: "♪",  top: "35%", left: "4%",  size: "1.3rem", rotate: "20deg" },
+  { symbol: "♪",  top: "38%", left: "4%",  size: "1.3rem", rotate: "20deg" },
   /* Right side */
-  { symbol: "♫",  top: "40%", left: "92%", size: "1.3rem", rotate: "25deg" },
+  { symbol: "♫",  top: "42%", left: "92%", size: "1.3rem", rotate: "25deg" },
   /* Bottom area */
-  { symbol: "𝄞",  top: "92%", left: "10%", size: "1.7rem", rotate: "10deg" },
-  { symbol: "♪",  top: "94%", left: "50%", size: "1.4rem", rotate: "-20deg" },
-  { symbol: "♫",  top: "88%", left: "30%", size: "1.2rem", rotate: "18deg" },
+  { symbol: "𝄞",  top: "92%", left: "8%",  size: "1.6rem", rotate: "10deg" },
+  { symbol: "♪",  top: "93%", left: "90%", size: "1.4rem", rotate: "-20deg" },
 ];
 
 export default function MemoryPage() {
@@ -36,16 +34,28 @@ export default function MemoryPage() {
         </span>
       ))}
 
-      <div className="memory-image-wrapper">
+      {/* Title above the photo */}
+      <h2 className="memory-phrase fade-in">A Symphony of Love</h2>
+
+      {/* Keepsake Portrait Frame */}
+      <div className="memory-image-wrapper fade-in-delay-1">
         <Image
           src="/image/Anjo (2).png"
           alt="Anjo & Pam Portrait"
           width={400}
           height={600}
           className="memory-image"
+          priority
         />
       </div>
-      <p className="memory-phrase">A Symphony of Love</p>
+
+      {/* Bible Verse below the photo, left-aligned like a letter */}
+      <div className="memory-verse-wrap fade-in-delay-2">
+        <p className="memory-verse-quote">
+          &ldquo;I have found the one, whom my soul loves...&rdquo;
+        </p>
+        <p className="memory-verse-ref">Song of Solomon 3:4</p>
+      </div>
     </div>
   );
 }

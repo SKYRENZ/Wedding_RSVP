@@ -8,7 +8,7 @@ const DECO = [
   { symbol: "♪", top: "93%", left: "88%", size: "1.4rem", rotate: "-15deg" },
 ];
 
-const YOUTUBE_VIDEO_ID = "nDA4T_NowM0";
+const YOUTUBE_VIDEO_ID = "avxbUl-qzxY";
 
 export default function PrenupPage() {
 
@@ -33,17 +33,11 @@ export default function PrenupPage() {
 
       {/* Chapter / Prologue Heading */}
       <div className="chapter-heading fade-in">
-        <span className="chapter-number">Save The Date</span>
-        <div className="story-divider" aria-hidden="true">
-          <span className="divider-vine left" />
-          <span className="divider-diamond">◆</span>
-          <span className="divider-vine right" />
-        </div>
         <h2 className="chapter-title">Our Prenup Film</h2>
       </div>
 
       <p className="prenup-tagline fade-in-delay-1">
-        “Every melody tells a story, but ours is our favorite song.”
+          And now, a new chapter awaits...
       </p>
 
       {/* YouTube Embed in decorative parchment frame */}
@@ -67,7 +61,6 @@ export default function PrenupPage() {
           <span className="divider-diamond">◆</span>
           <span className="divider-vine right" />
         </div>
-        <span className="prenup-couple">Anjo &amp; Pam</span>
       </div>
     </div>
   );

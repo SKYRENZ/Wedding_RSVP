@@ -9,44 +9,47 @@ import React from "react";
 const ENTOURAGE2 = {
   secondarySponsors: {
     candle: { label: "To light our path", groom: "Mr. Mark Daniel Torrente", bride: "Ms. Jennica Pico" },
-    veil:   { label: "To clothes us as one", groom: "Mr. Leonardo Aris Putan", bride: "Mrs. Mary Grace Putan" },
+    veil:   { label: "To clothe us as one", groom: "Mr. Leonardo Aris Putan", bride: "Mrs. Mary Grace Putan" },
     cord:   { label: "To bind us together", groom: "Mr. Richard Jimenez", bride: "Mrs. Junylen Jimenez" },
   },
 
   groomsmen: [
     "Mr. Mark Laurenz Listangco",
-    "Mr. John Carlo Ederio",
     "Ptr. Kristian Clavecillas",
+    "Mr. John Carlo Ederio",
+    "Mr. Melvin Velasco",
     "Mr. Kevin Aquino",
     "Mr. John Carlo Perillo",
   ],
   bridesmaids: [
     "Ms. Danica Rose Aricayos",
-    "Ms. Joan Battung",
     "Ms. Trisha Mae Lingad",
+    "Ms. Joan Battung",
+    "Ms. Velasco*",
     "Ms. Alpha Joy Fallesgon",
     "Ms. Stephanie Jane Gonzales",
     "Ms. Kyla Clavecillas",
     "Ms. Merapie Pacatan",
+    "Ms. Precious Palaña",
   ],
 
-  ringBearer:   "Mr. Xhandroe Palaña",
+  ringBearer:   "Mr. Gerome Xhandroe Matthew Palaña",
   bibleBearer:  "Ms. Psalm Silao",
-  coinBearer:   "Ms. AG Aranas",
+  coinBearer:   "Ms. AG Carrina Aranas",
+
+  whiteAisleRunners: [
+    "Mr. George Ethan Matthew Palana",
+    "Mr. Jabez James Mancio",
+  ],
 
   flowerGirls: [
-    "Amari Isibel Putan",
+    "Amari Isibeal Putan",
     "Samantha Abia Sabio",
     "Gaily Andrea Verdejo",
+    "Athena Cithtrine Mendoza",
     "Lasuli Eill David",
     "Zameerah Erich Rodriguez",
     "Marchie Palaña",
-    "Athena Cithtrine Mendoza",
-  ],
-
-  whiteAisleRunners: [
-    "Mr. George Ethan Matthew Palaña",
-    "Mr. Jabez James Mancio",
   ],
 
   hereComesTheBride: "Zatthu Jehiah Ernacio",
@@ -100,11 +103,7 @@ export default function EntouragePage2() {
         </div>
       </div>
 
-      <div className="story-divider entourage-divider" aria-hidden="true">
-        <span className="divider-vine left" />
-        <span className="divider-diamond">◆</span>
-        <span className="divider-vine right" />
-      </div>
+
 
       {/* ── Groomsmen & Bridesmaids ── */}
       <div className="entourage-two-col">
@@ -116,12 +115,6 @@ export default function EntouragePage2() {
           <RoleTag>Bridesmaids</RoleTag>
           <NameList names={ENTOURAGE2.bridesmaids} />
         </div>
-      </div>
-
-      <div className="story-divider entourage-divider" aria-hidden="true">
-        <span className="divider-vine left" />
-        <span className="divider-diamond">◆</span>
-        <span className="divider-vine right" />
       </div>
 
       {/* ── Bearers ── */}
@@ -140,11 +133,13 @@ export default function EntouragePage2() {
         </div>
       </div>
 
-      <div className="story-divider entourage-divider" aria-hidden="true">
-        <span className="divider-vine left" />
-        <span className="divider-diamond">◆</span>
-        <span className="divider-vine right" />
+
+      {/* ── White Aisle Runner ── */}
+      <div className="entourage-block entourage-block-center">
+        <RoleTag>White Aisle Runner</RoleTag>
+        <NameList names={ENTOURAGE2.whiteAisleRunners} />
       </div>
+
 
       {/* ── Flower Girls ── */}
       <div className="entourage-block entourage-block-center">
@@ -156,23 +151,6 @@ export default function EntouragePage2() {
         </div>
       </div>
 
-      <div className="story-divider entourage-divider" aria-hidden="true">
-        <span className="divider-vine left" />
-        <span className="divider-diamond">◆</span>
-        <span className="divider-vine right" />
-      </div>
-
-      {/* ── White Aisle Runner ── */}
-      <div className="entourage-block entourage-block-center">
-        <RoleTag>White Aisle Runner</RoleTag>
-        <NameList names={ENTOURAGE2.whiteAisleRunners} />
-      </div>
-
-      <div className="story-divider entourage-divider" aria-hidden="true">
-        <span className="divider-vine left" />
-        <span className="divider-diamond">◆</span>
-        <span className="divider-vine right" />
-      </div>
 
       {/* ── Here Comes the Bride ── */}
       <div className="entourage-block entourage-block-center entourage-block-last">

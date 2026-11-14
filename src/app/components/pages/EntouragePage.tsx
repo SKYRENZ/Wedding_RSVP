@@ -6,31 +6,37 @@ import React from "react";
    ───────────────────────────────────────────── */
 
 const ENTOURAGE = {
-  solemnizingOfficer: "Pastor Jonathan F. Ernacio",
-
   parentsOfGroom: ["Mr. Noel A. Silao", "Mrs. Jonna B. Palaña"],
-  parentsOfBride: ["Mr. Miller F. Listangco", "Mrs. Paz R. Listangco"],
+  parentsOfBride: ["Mr. Millier F. Listangco", "Mrs. Paz R. Listangco"],
+
+  solemnizingOfficer: "Pastor Jonathan F. Ernacio",
 
   principalSponsors: {
     groom: [
       "Pastor Jonathan Ernacio",
+      "Pastor Arvin Mingoy",
       "Pastor Rhenald Lagrimas",
       "Pastor Reynaldo Fallesgon",
       "Pastor Rodolfo Mancio",
+      "Pastor Michael Lagrimas",
       "Pastor Joel Abegonia",
+      "Hon. Cong. Sergio Dagooc",
       "Mr. Boy Gutang",
       "Mr. Aniano Silao, Jr.",
-      "Mr. Indoy Urbizfondo",
+      "Mr. Indoy Urbiztondo",
       "Mr. Cleto Sescon",
       "Mr. John Elven Vega",
       "Mr. Loreto Sayson",
     ],
     bride: [
       "Mrs. Vanessa Lynn Ernacio",
+      "Dra. Teresa Mingoy",
       "Mrs. Thelma Lagrimas",
       "Mrs. Grace Jeanette Fallesgon",
       "Mrs. Estelita Mancio",
+      "Mrs. Julie Ann Rose Lagrimas",
       "Mrs. Imee Abegonia",
+      "Mrs. Amitha Dagooc",
       "Mrs. Belinda Gutang",
       "Mrs. Jennifer Silao",
       "Mrs. Linda Urbiztondo",
@@ -41,6 +47,7 @@ const ENTOURAGE = {
       "Mrs. Gabriela Tañedo",
       "Mrs. Rosemarie Velasco",
       "Mrs. Ruby Watanabe",
+      "Mrs. Mary Grace Kimura",
     ],
   },
 
@@ -83,19 +90,7 @@ export default function EntouragePage1() {
         <h2 className="chapter-title">The Entourage</h2>
       </div>
 
-      {/* ── Solemnizing Officer ── */}
-      <div className="entourage-block entourage-block-center">
-        <RoleTag>Solemnizing Officer</RoleTag>
-        <p className="entourage-name">{ENTOURAGE.solemnizingOfficer}</p>
-      </div>
-
-      <div className="story-divider entourage-divider" aria-hidden="true">
-        <span className="divider-vine left" />
-        <span className="divider-diamond">◆</span>
-        <span className="divider-vine right" />
-      </div>
-
-      {/* ── Parents ── */}
+      {/* ── Parents (Above Solemnizing Officer) ── */}
       <div className="entourage-two-col">
         <div className="entourage-block">
           <RoleTag>Parents of the Groom</RoleTag>
@@ -107,10 +102,12 @@ export default function EntouragePage1() {
         </div>
       </div>
 
-      <div className="story-divider entourage-divider" aria-hidden="true">
-        <span className="divider-vine left" />
-        <span className="divider-diamond">◆</span>
-        <span className="divider-vine right" />
+
+
+      {/* ── Solemnizing Officer ── */}
+      <div className="entourage-block entourage-block-center">
+        <RoleTag>Solemnizing Officer</RoleTag>
+        <p className="entourage-name">{ENTOURAGE.solemnizingOfficer}</p>
       </div>
 
       {/* ── Principal Sponsors ── */}
@@ -126,11 +123,6 @@ export default function EntouragePage1() {
         </div>
       </div>
 
-      <div className="story-divider entourage-divider" aria-hidden="true">
-        <span className="divider-vine left" />
-        <span className="divider-diamond">◆</span>
-        <span className="divider-vine right" />
-      </div>
 
       {/* ── Best Man & Matron of Honor ── */}
       <div className="entourage-two-col">
