@@ -7,7 +7,7 @@
   --color-parchment: #f5ebe0;
   --color-parchment-dark: #e8d5c4;
   --color-brown: #6b4c3b;
-  --color-brown-light: #8b6f5e;
+  --color-brown-light: #4a3224;
   --color-brown-dark: #3d2b1f;
   --color-burgundy: #6d1a36;
   --color-burgundy-light: #8b2252;
@@ -17,8 +17,8 @@
   --color-gold-dark: #a08060;
   --color-tan: #c4a882;
   --color-cream: #faf6ef;
-  --color-text: #4a3728;
-  --color-text-muted: rgba(74, 55, 40, 0.55);
+  --color-text: #24140a;
+  --color-text-muted: rgba(36, 20, 10, 0.72);
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Cormorant Garamond', serif;
   --font-script: 'Great Vibes', cursive;
@@ -801,7 +801,8 @@ body {
   font-size: clamp(0.65rem, 1.3vw, 0.75rem);
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--color-gold-dark);
+  color: #5c3d28;
+  font-weight: 600;
   font-style: italic;
 }
 
@@ -1153,7 +1154,8 @@ body {
 .rsvp-deadline {
   font-family: var(--font-body);
   font-size: clamp(0.75rem, 1.6vw, 0.88rem);
-  color: var(--color-text-muted);
+  color: #3d2516;
+  font-weight: 500;
   font-style: italic;
   letter-spacing: 0.04em;
 }
@@ -1183,7 +1185,8 @@ body {
   font-size: clamp(0.62rem, 1.2vw, 0.72rem);
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-brown-light);
+  color: #2c1a0e;
+  font-weight: 700;
 }
 
 .rsvp-required {
@@ -1196,13 +1199,14 @@ body {
 .rsvp-textarea,
 .rsvp-select {
   width: 100%;
-  background: rgba(250, 246, 239, 0.65);
-  border: 1px solid rgba(196, 168, 130, 0.55);
+  background: rgba(255, 252, 247, 0.85);
+  border: 1px solid rgba(139, 94, 60, 0.45);
   border-radius: 6px;
   padding: clamp(0.4rem, 1vw, 0.55rem) clamp(0.6rem, 1.5vw, 0.85rem);
   font-family: var(--font-body);
   font-size: clamp(0.8rem, 1.6vw, 0.95rem);
-  color: var(--color-text);
+  color: #1a0e08;
+  font-weight: 500;
   outline: none;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
   appearance: none;
@@ -1211,7 +1215,7 @@ body {
 
 .rsvp-input::placeholder,
 .rsvp-textarea::placeholder {
-  color: var(--color-text-muted);
+  color: rgba(61, 37, 22, 0.65);
   font-style: italic;
 }
 
@@ -1257,7 +1261,8 @@ body {
   cursor: pointer;
   font-family: var(--font-body);
   font-size: clamp(0.78rem, 1.5vw, 0.9rem);
-  color: var(--color-text);
+  color: #1a0e08;
+  font-weight: 600;
   font-style: italic;
   position: relative;
 }
@@ -1337,7 +1342,8 @@ body {
   cursor: pointer;
   font-family: var(--font-body);
   font-size: clamp(0.62rem, 1.2vw, 0.72rem);
-  color: var(--color-text-muted);
+  color: #3d2516;
+  font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
   font-style: italic;
@@ -1381,28 +1387,31 @@ body {
   font-size: clamp(0.62rem, 1.2vw, 0.72rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-burgundy);
-  font-weight: 600;
+  color: #5c122b;
+  font-weight: 700;
 }
 
 .rsvp-reminder-body {
   font-family: var(--font-body);
   font-size: clamp(0.72rem, 1.4vw, 0.82rem);
-  color: var(--color-text);
+  color: #1a0e08;
+  font-weight: 500;
   line-height: 1.5;
 }
 
 .rsvp-reminder-note {
   font-family: var(--font-body);
   font-size: clamp(0.72rem, 1.4vw, 0.82rem);
-  color: var(--color-text);
+  color: #1a0e08;
+  font-weight: 500;
   font-style: italic;
   line-height: 1.5;
 }
 
 .rsvp-reminder-note strong {
   font-style: normal;
-  color: var(--color-brown-dark);
+  color: #000000;
+  font-weight: 700;
 }
 
 /* ─── iframe embed fallback ─── */
