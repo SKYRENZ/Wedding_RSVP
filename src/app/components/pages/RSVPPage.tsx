@@ -49,7 +49,6 @@ interface SavedRsvpState {
   status: Status;
   name: string;
   contact: string;
-  email: string;
   attend: string;
   message: string;
 }
@@ -59,7 +58,6 @@ const savedRsvpState: SavedRsvpState = {
   status: "idle",
   name: "",
   contact: "",
-  email: "",
   attend: "",
   message: "",
 };
@@ -257,7 +255,6 @@ export default function RSVPPage() {
     const formData = new FormData(e.currentTarget);
     savedRsvpState.name = (formData.get(ENTRY.name) as string) || "";
     savedRsvpState.contact = (formData.get(ENTRY.contact) as string) || "";
-    savedRsvpState.email = (formData.get(ENTRY.email) as string) || "";
     savedRsvpState.attend = (formData.get(ENTRY.attend) as string) || "";
     savedRsvpState.message = (formData.get(ENTRY.message) as string) || "";
 
@@ -371,25 +368,6 @@ export default function RSVPPage() {
               el.value = el.value.replace(/\D/g, "").slice(0, 11);
               savedRsvpState.contact = el.value;
             }}
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-
-        {/* Email Address */}
-        <div className="rsvp-field">
-          <label htmlFor="rsvp-email" className="rsvp-label">
-            Email Address
-          </label>
-          <input
-            id="rsvp-email"
-            name={ENTRY.email}
-            type="email"
-            defaultValue={savedRsvpState.email}
-            onChange={(e) => {
-              savedRsvpState.email = e.target.value;
-            }}
-            placeholder="your@email.com"
-            className="rsvp-input"
             onClick={(e) => e.stopPropagation()}
           />
         </div>
