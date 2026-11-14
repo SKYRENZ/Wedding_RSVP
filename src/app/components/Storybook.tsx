@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
+import Image from "next/image";
 import PreludePage from "./pages/PreludePage";
 import HeroPage from "./pages/HeroPage";
 import PrenupPage from "./pages/PrenupPage";
@@ -189,11 +190,14 @@ export default function Storybook() {
             onClick={() => goToPage("next")}
             aria-label="Next page"
           >
-            <div className="curl-fold" aria-hidden="true">
-              <svg className="curl-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </div>
+            <Image
+              src="/image/Aged Parchment Next Arrow.png"
+              alt="Next page"
+              width={1114}
+              height={951}
+              className="page-curl-img"
+              priority
+            />
           </button>
         )}
 
@@ -204,11 +208,14 @@ export default function Storybook() {
             onClick={() => goToPage("prev")}
             aria-label="Previous page"
           >
-            <div className="curl-fold" aria-hidden="true">
-              <svg className="curl-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </div>
+            <Image
+              src="/image/Antique parchment back button icon.png"
+              alt="Previous page"
+              width={957}
+              height={950}
+              className="page-curl-img"
+              priority
+            />
           </button>
         )}
 

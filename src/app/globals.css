@@ -365,156 +365,60 @@ body {
 
 .page-curl {
   position: absolute;
-  z-index: 20;
+  z-index: 25;
   bottom: 0;
-  width: clamp(60px, 12vw, 90px);
-  height: clamp(60px, 12vw, 90px);
   border: none;
   cursor: pointer;
   background: transparent;
   padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overflow: visible;
 }
 
-/* Next page — bottom right curl */
 .page-curl-next {
   right: 0;
+  justify-content: flex-end;
+  width: clamp(60px, 13vw, 95px);
 }
 
 .page-curl-prev {
   left: 0;
+  justify-content: flex-start;
+  width: clamp(55px, 12vw, 88px);
 }
 
-.curl-fold {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.page-curl-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  filter: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* The triangular folded corner */
-.page-curl-next .curl-fold::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 0 clamp(60px, 12vw, 90px) clamp(60px, 12vw, 90px);
-  border-color: transparent transparent var(--color-parchment-dark) transparent;
-  filter: drop-shadow(-3px -3px 4px rgba(0, 0, 0, 0.15));
-  transition: border-width 0.3s ease;
+.page-curl-next .page-curl-img {
+  transform-origin: bottom right;
 }
 
-/* The darker underside showing through */
-.page-curl-next .curl-fold::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 0 clamp(50px, 10vw, 75px) clamp(50px, 10vw, 75px);
-  border-color: transparent transparent var(--color-brown-light) transparent;
-  opacity: 0.3;
-  transition: border-width 0.3s ease, opacity 0.3s ease;
+.page-curl-prev .page-curl-img {
+  transform-origin: bottom left;
 }
 
-.page-curl-prev .curl-fold::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: clamp(60px, 12vw, 90px) 0 0 clamp(60px, 12vw, 90px);
-  border-color: transparent transparent transparent var(--color-parchment-dark);
-  filter: drop-shadow(3px -3px 4px rgba(0, 0, 0, 0.15));
-  transition: border-width 0.3s ease;
+/* Hover — gentle lift, no floating shadow */
+.page-curl:hover .page-curl-img {
+  transform: scale(1.1);
+  opacity: 0.92;
 }
 
-.page-curl-prev .curl-fold::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: clamp(50px, 10vw, 75px) 0 0 clamp(50px, 10vw, 75px);
-  border-color: transparent transparent transparent var(--color-brown-light);
-  opacity: 0.3;
-  transition: border-width 0.3s ease, opacity 0.3s ease;
-}
-
-/* Arrow on the curl */
-.curl-arrow {
-  position: absolute;
-  width: clamp(16px, 3vw, 22px);
-  height: clamp(16px, 3vw, 22px);
-  color: var(--color-cream);
-  opacity: 0.8;
-  z-index: 2;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.page-curl-next .curl-arrow {
-  bottom: clamp(10px, 2.5vw, 18px);
-  right: clamp(8px, 2vw, 14px);
-}
-
-.page-curl-prev .curl-arrow {
-  bottom: clamp(10px, 2.5vw, 18px);
-  left: clamp(8px, 2vw, 14px);
-}
-
-/* Hover effect — enlarge the curl */
-.page-curl:hover .curl-fold::before {
-  border-width: 0 0 clamp(75px, 15vw, 110px) clamp(75px, 15vw, 110px);
-}
-
-.page-curl-prev:hover .curl-fold::before {
-  border-width: clamp(75px, 15vw, 110px) 0 0 clamp(75px, 15vw, 110px);
-}
-
-.page-curl:hover .curl-fold::after {
-  opacity: 0.45;
-}
-
-.page-curl:hover .curl-arrow {
+/* Active press — slight shrink to feel tactile */
+.page-curl:active .page-curl-img {
+  transform: scale(0.95);
   opacity: 1;
-  transform: scale(1.15);
-}
-
-/* Active press */
-.page-curl:active .curl-fold::before {
-  border-width: 0 0 clamp(85px, 18vw, 120px) clamp(85px, 18vw, 120px);
-}
-
-.page-curl-prev:active .curl-fold::before {
-  border-width: clamp(85px, 18vw, 120px) 0 0 clamp(85px, 18vw, 120px);
-}
-
-/* Subtle breathing animation on the curl */
-.page-curl-next {
-  animation: curlBreath 3s ease-in-out infinite;
-}
-
-@keyframes curlBreath {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.05);
-  }
 }
 
 /* ─── Page indicator dots ─── */
@@ -1893,9 +1797,11 @@ body {
   }
 
   /* ---- Page navigation ---- */
-  .page-curl {
-    width: clamp(70px, 10vw, 95px);
-    height: clamp(70px, 10vw, 95px);
+  .page-curl-next {
+    width: clamp(65px, 11vw, 90px);
+  }
+  .page-curl-prev {
+    width: clamp(58px, 10vw, 82px);
   }
 
   .page-indicator {
