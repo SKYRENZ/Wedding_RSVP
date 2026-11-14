@@ -23,6 +23,9 @@ export default function CoverPage({ onOpen }: CoverPageProps) {
   const handleOpen = () => {
     if (exiting) return;
     setExiting(true);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("storybook:open-book"));
+    }
     setTimeout(() => onOpen(), 700);
   };
 

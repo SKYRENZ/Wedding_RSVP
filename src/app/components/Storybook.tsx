@@ -13,6 +13,7 @@ import DetailsPage from "./pages/DetailsPage";
 import RSVPPage from "./pages/RSVPPage";
 import MemoryPage from "./pages/MemoryPage";
 import CoverPage from "./CoverPage";
+import BackgroundMusic from "./BackgroundMusic";
 
 const PAGES = [
   { id: "prelude", Component: PreludePage },
@@ -119,124 +120,124 @@ export default function Storybook() {
     }
   }
 
-  if (showCover) {
-    return (
-      <div className="storybook-wrapper">
-        <CoverPage onOpen={handleOpenBook} />
-      </div>
-    );
-  }
-
   return (
     <div className="storybook-wrapper">
-      {/* Ambient particles — rendered client-side only to avoid hydration mismatch */}
-      {mounted && (
-        <div className="ambient-particles" aria-hidden="true">
-          {PARTICLES.map((p, i) => (
-            <span
-              key={i}
-              className="particle"
-              style={{
-                left: p.left,
-                animationDelay: p.delay,
-                animationDuration: p.duration,
-              }}
-            />
-          ))}
-        </div>
-      )}
+      <BackgroundMusic autoPlayTrigger={!showCover} />
 
-      <div
-        className="book-container"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        <div className={`book ${isFlipping ? `flipping-${flipDirection}` : ""}`}>
-          {/* Base layer — sits underneath */}
-          <div className="book-page book-page-base">
-            <div className="page-inner">
-              <div className="page-ornament top-left" aria-hidden="true" />
-              <div className="page-ornament top-right" aria-hidden="true" />
-              <div className="page-ornament bottom-left" aria-hidden="true" />
-              <div className="page-ornament bottom-right" aria-hidden="true" />
-              <div className="page-border" aria-hidden="true" />
-              <div className="page-content">
-                <BaseComponent />
-              </div>
-            </div>
-          </div>
-
-          {/* Flip layer — animates on top */}
-          {isFlipping && (
-            <div className={`book-page book-page-flip flip-${flipDirection}`}>
-              <div className="page-inner">
-                <div className="page-ornament top-left" aria-hidden="true" />
-                <div className="page-ornament top-right" aria-hidden="true" />
-                <div className="page-ornament bottom-left" aria-hidden="true" />
-                <div className="page-ornament bottom-right" aria-hidden="true" />
-                <div className="page-border" aria-hidden="true" />
-                <div className="page-content">
-                  <FlipComponent />
-                </div>
-              </div>
+      {showCover ? (
+        <CoverPage onOpen={handleOpenBook} />
+      ) : (
+        <>
+          {/* Ambient particles — rendered client-side only to avoid hydration mismatch */}
+          {mounted && (
+            <div className="ambient-particles" aria-hidden="true">
+              {PARTICLES.map((p, i) => (
+                <span
+                  key={i}
+                  className="particle"
+                  style={{
+                    left: p.left,
+                    animationDelay: p.delay,
+                    animationDuration: p.duration,
+                  }}
+                />
+              ))}
             </div>
           )}
-        </div>
 
-        {/* Page curl — bottom right to go next */}
-        {canGoNext && (
-          <button
-            className="page-curl page-curl-next"
-            onClick={() => goToPage("next")}
-            aria-label="Next page"
+          <div
+            className="book-container"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
-            <Image
-              src="/image/Aged Parchment Next Arrow.png"
-              alt="Next page"
-              width={1114}
-              height={951}
-              className="page-curl-img"
-              priority
-            />
-          </button>
-        )}
+            <div className={`book ${isFlipping ? `flipping-${flipDirection}` : ""}`}>
+              {/* Base layer — sits underneath */}
+              <div className="book-page book-page-base">
+                <div className="page-inner">
+                  <div className="page-ornament top-left" aria-hidden="true" />
+                  <div className="page-ornament top-right" aria-hidden="true" />
+                  <div className="page-ornament bottom-left" aria-hidden="true" />
+                  <div className="page-ornament bottom-right" aria-hidden="true" />
+                  <div className="page-border" aria-hidden="true" />
+                  <div className="page-content">
+                    <BaseComponent />
+                  </div>
+                </div>
+              </div>
 
-        {/* Page curl — bottom left to go back */}
-        {canGoPrev && (
-          <button
-            className="page-curl page-curl-prev"
-            onClick={() => goToPage("prev")}
-            aria-label="Previous page"
-          >
-            <Image
-              src="/image/Antique parchment back button icon.png"
-              alt="Previous page"
-              width={957}
-              height={950}
-              className="page-curl-img"
-              priority
-            />
-          </button>
-        )}
+              {/* Flip layer — animates on top */}
+              {isFlipping && (
+                <div className={`book-page book-page-flip flip-${flipDirection}`}>
+                  <div className="page-inner">
+                    <div className="page-ornament top-left" aria-hidden="true" />
+                    <div className="page-ornament top-right" aria-hidden="true" />
+                    <div className="page-ornament bottom-left" aria-hidden="true" />
+                    <div className="page-ornament bottom-right" aria-hidden="true" />
+                    <div className="page-border" aria-hidden="true" />
+                    <div className="page-content">
+                      <FlipComponent />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
 
-        {/* Page indicator dots */}
-        <div className="page-indicator" aria-hidden="true">
-          {PAGES.map((_, i) => (
-            <span
-              key={i}
-              className={`page-ind-dot ${i === currentPage ? "active" : ""}`}
-            />
-          ))}
-        </div>
+            {/* Page curl — bottom right to go next */}
+            {canGoNext && (
+              <button
+                className="page-curl page-curl-next"
+                onClick={() => goToPage("next")}
+                aria-label="Next page"
+              >
+                <Image
+                  src="/image/Aged Parchment Next Arrow.png"
+                  alt="Next page"
+                  width={1114}
+                  height={951}
+                  className="page-curl-img"
+                  priority
+                />
+              </button>
+            )}
 
-        {/* Hint on first page */}
-        {currentPage === 0 && !isFlipping && (
-          <div className="turn-hint fade-in-delay-5">
-            <span>Turn the page</span>
-            <span className="hint-arrow">→</span>
+            {/* Page curl — bottom left to go back */}
+            {canGoPrev && (
+              <button
+                className="page-curl page-curl-prev"
+                onClick={() => goToPage("prev")}
+                aria-label="Previous page"
+              >
+                <Image
+                  src="/image/Antique parchment back button icon.png"
+                  alt="Previous page"
+                  width={957}
+                  height={950}
+                  className="page-curl-img"
+                  priority
+                />
+              </button>
+            )}
+
+            {/* Page indicator dots */}
+            <div className="page-indicator" aria-hidden="true">
+              {PAGES.map((_, i) => (
+                <span
+                  key={i}
+                  className={`page-ind-dot ${i === currentPage ? "active" : ""}`}
+                />
+              ))}
+            </div>
+
+            {/* Hint on first page */}
+            {currentPage === 0 && !isFlipping && (
+              <div className="turn-hint fade-in-delay-5">
+                <span>Turn the page</span>
+                <span className="hint-arrow">→</span>
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }
