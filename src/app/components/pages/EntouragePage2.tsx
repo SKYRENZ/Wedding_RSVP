@@ -29,7 +29,7 @@ const ENTOURAGE2 = {
     "Ms. Alpha Joy Fallesgon",
     "Ms. Stephanie Jane Gonzales",
     "Ms. Kyla Clavecillas",
-    "Ms. Merapie Pacatan",
+    "Ms. Angelyn Tresvalles",
     "Ms. Precious love Palaña",
   ],
 
@@ -46,7 +46,7 @@ const ENTOURAGE2 = {
     "Amari Isibeal Putan",
     "Samantha Abia Sabio",
     "Gabby Adele Verdejo",
-    "Gaily Andrea Verdejo",
+    "Gaily Andreea Verdejo",
     "Athena Cithtrine Mendoza",
     "Lasuli Eill David",
     "Zameerah Erich Rodriguez",
