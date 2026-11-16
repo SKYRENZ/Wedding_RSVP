@@ -21,13 +21,14 @@ const ENTOURAGE = {
       "Pastor Michael Lagrimas",
       "Pastor Joel Abegonia",
       "Hon. Cong. Sergio Dagooc",
+      "Hon. Br. Gen. George Banzon",
       "Mr. Rolando Gutang",
       "Mr. Aniano Silao, Jr.",
       "Mr. Isidro Urbiztondo",
       "Mr. Cleto Sescon",
       "Mr. John Elven Vega",
       "Mr. Loreto Sayson",
-      "Hon. Br. Gen. George Banzon",
+
     ],
     bride: [
       "Mrs. Vanessa Lynn Ernacio",
@@ -38,6 +39,7 @@ const ENTOURAGE = {
       "Mrs. Julie Ann Rose Lagrimas",
       "Mrs. Imee Abegonia",
       "Mrs. Amitha Dagooc",
+      "Atty. Maria Dulce Banzon",
       "Mrs. Belinda Gutang",
       "Mrs. Jennifer Silao",
       "Mrs. Linda Urbiztondo",
@@ -49,7 +51,6 @@ const ENTOURAGE = {
       "Mrs. Rosemarie Velasco",
       "Mrs. Ruby Watanabe",
       "Mrs. Mary Grace Kimura",
-      "Atty. Maria Dulce Banzon",
     ],
   },
 

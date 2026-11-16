@@ -45,6 +45,7 @@ const ENTOURAGE2 = {
   flowerGirls: [
     "Amari Isibeal Putan",
     "Samantha Abia Sabio",
+    "Gabby Adele Verdejo",
     "Gaily Andrea Verdejo",
     "Athena Cithtrine Mendoza",
     "Lasuli Eill David",
