@@ -33,7 +33,7 @@ export default function PreludePage() {
         </p>
 
         <p className="prelude-para">
-          Throughout their years in ministry, they wore many hats: the drummer
+          Throughout their years in the ministry, they wore many hats: the drummer
           and the worship singer preparing Sunday&apos;s worship, co-leaders in
           the youth ministry, the level head and the secretary, the event
           director and the program coordinator. Like two different instruments
