@@ -39,16 +39,21 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  overflow: hidden;
+  min-height: 100%;
+}
+
+html:has(.storybook-wrapper),
+body:has(.storybook-wrapper) {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  overflow-x: hidden;
   /* Dark wood-grain background */
   background-image:
     radial-gradient(ellipse at 30% 50%, rgba(60, 30, 15, 0.4) 0%, transparent 70%),
@@ -3301,4 +3306,52 @@ body {
 
 .music-toggle-btn:hover .music-icon-muted {
   opacity: 1;
+}
+
+
+/* ─── Seating Page Utilities & Animations ─── */
+@keyframes fadeInSeating {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpSeating {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeInSeating 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slideUp {
+  animation: slideUpSeating 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  [role="dialog"], [role="dialog"] * {
+    visibility: visible;
+  }
+  [role="dialog"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: white !important;
+  }
 }
