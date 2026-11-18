@@ -3355,3 +3355,183 @@ body {
     background: white !important;
   }
 }
+
+/* ══════════════════════════════════════════════
+   FLOATING RSVP SKIP BUTTON
+   ══════════════════════════════════════════════ */
+
+@keyframes rsvpSkipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rsvpSkipPulse {
+  0%, 100% { box-shadow: 0 4px 18px rgba(109, 26, 54, 0.45), 0 0 0 0 rgba(109, 26, 54, 0.3); }
+  50%       { box-shadow: 0 4px 22px rgba(109, 26, 54, 0.6),  0 0 0 6px rgba(109, 26, 54, 0); }
+}
+
+.rsvp-skip-btn {
+  position: fixed;
+  top: clamp(14px, 2.5vh, 24px);
+  left: clamp(14px, 2.5vw, 24px);
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  animation: rsvpSkipFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform 0.18s ease;
+}
+
+.rsvp-skip-btn:hover,
+.rsvp-skip-btn:focus-visible {
+  transform: scale(1.05);
+  outline: none;
+}
+
+.rsvp-skip-btn:active {
+  transform: scale(0.97);
+}
+
+/* Circle icon — same size as music-toggle-btn */
+.rsvp-skip-icon {
+  flex-shrink: 0;
+  width: clamp(40px, 8vw, 46px);
+  height: clamp(40px, 8vw, 46px);
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-burgundy) 0%, #8b2252 100%);
+  color: var(--color-parchment);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 3px 12px rgba(109, 26, 54, 0.5);
+  animation: rsvpSkipPulse 2.8s ease-in-out 1.5s infinite;
+  transition: background 0.18s ease;
+}
+
+.rsvp-skip-btn:hover .rsvp-skip-icon,
+.rsvp-skip-btn:focus-visible .rsvp-skip-icon {
+  background: linear-gradient(135deg, #8b2252 0%, var(--color-burgundy) 100%);
+}
+
+/* ══════════════════════════════════════════════
+   RSVP ONBOARDING HINT PANEL
+   ══════════════════════════════════════════════ */
+
+@keyframes rsvpHintIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+.rsvp-hint-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 10, 5, 0.6);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 24px;
+}
+
+.rsvp-hint-panel {
+  background: var(--color-parchment);
+  border: 1.5px solid var(--color-gold);
+  border-radius: 16px;
+  padding: 32px 28px 24px;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  animation: rsvpHintIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.rsvp-hint-title {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--color-burgundy);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.rsvp-hint-body {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-brown);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.rsvp-hint-btn-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  margin: 20px 0 24px;
+}
+
+@keyframes rsvpArrowBounce {
+  0%, 100% { transform: translateY(0);    opacity: 1;    }
+  50%       { transform: translateY(6px); opacity: 0.65; }
+}
+
+.rsvp-hint-arrow {
+  display: block;
+  font-size: 1.4rem;
+  color: var(--color-burgundy);
+  animation: rsvpArrowBounce 1s ease-in-out infinite;
+  line-height: 1;
+}
+
+.rsvp-hint-preview-icon {
+  width: clamp(44px, 10vw, 54px) !important;
+  height: clamp(44px, 10vw, 54px) !important;
+  font-size: 1.3rem !important;
+  box-shadow: 0 4px 16px rgba(109, 26, 54, 0.45) !important;
+  animation: none !important;
+  pointer-events: none;
+}
+
+.rsvp-hint-confirm-btn {
+  display: inline-block;
+  padding: 10px 32px;
+  background: linear-gradient(135deg, var(--color-burgundy) 0%, #8b2252 100%);
+  color: var(--color-parchment);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(109, 26, 54, 0.4);
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.rsvp-hint-confirm-btn:hover {
+  background: linear-gradient(135deg, #8b2252 0%, var(--color-burgundy) 100%);
+  transform: scale(1.04);
+}
+
+.rsvp-hint-confirm-btn:active {
+  transform: scale(0.97);
+}

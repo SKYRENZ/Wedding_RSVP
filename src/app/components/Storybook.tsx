@@ -43,11 +43,13 @@ export default function Storybook() {
   const [flipDirection, setFlipDirection] = useState<"next" | "prev">("next");
   const [flipTarget, setFlipTarget] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [showRsvpHint, setShowRsvpHint] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
 
   const handleOpenBook = useCallback(() => {
     setShowCover(false);
+    setShowRsvpHint(true);
   }, []);
 
   /* Swipe support */
@@ -97,6 +99,23 @@ export default function Storybook() {
 
   const canGoNext = currentPage < totalPages - 1 && !isFlipping;
   const canGoPrev = currentPage > 0 && !isFlipping;
+
+  const RSVP_PAGE_INDEX = PAGES.findIndex((p) => p.id === "rsvp");
+
+  const skipToRSVP = useCallback(() => {
+    if (isFlipping || currentPage === RSVP_PAGE_INDEX) return;
+    setFlipDirection("next");
+    setFlipTarget(RSVP_PAGE_INDEX);
+    setIsFlipping(true);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("storybook:page-flip"));
+    }
+    setTimeout(() => {
+      setCurrentPage(RSVP_PAGE_INDEX);
+      setIsFlipping(false);
+      setFlipTarget(null);
+    }, 800);
+  }, [isFlipping, currentPage, RSVP_PAGE_INDEX]);
 
   /*
    * NEXT: current page flips AWAY → next page revealed underneath
@@ -236,6 +255,52 @@ export default function Storybook() {
               </div>
             )}
           </div>
+
+          {/* Floating RSVP shortcut — hidden when already on RSVP page */}
+          {currentPage !== RSVP_PAGE_INDEX && (
+            <button
+              className="rsvp-skip-btn"
+              onClick={skipToRSVP}
+              aria-label="Skip to RSVP Forms"
+            >
+              <span className="rsvp-skip-icon">✉</span>
+            </button>
+          )}
+
+          {/* RSVP onboarding hint panel */}
+          {showRsvpHint && (
+            <div className="rsvp-hint-overlay" onClick={() => setShowRsvpHint(false)}>
+              <div className="rsvp-hint-panel" onClick={(e) => e.stopPropagation()}>
+                <p className="rsvp-hint-title">You are invited!</p>
+
+                <div className="story-divider" aria-hidden="true">
+                  <span className="divider-vine left" />
+                  <span className="divider-diamond">◆</span>
+                  <span className="divider-vine right" />
+                </div>
+
+                <p className="rsvp-hint-body">
+                  Kindly let us know if you could come.
+                </p>
+                <p className="rsvp-hint-body">
+                  Simply click the button below to RSVP
+                </p>
+
+                {/* Preview of the actual button */}
+                <div className="rsvp-hint-btn-preview" aria-hidden="true">
+                  <span className="rsvp-hint-arrow">↓</span>
+                  <span className="rsvp-skip-icon rsvp-hint-preview-icon">✉</span>
+                </div>
+
+                <button
+                  className="rsvp-hint-confirm-btn"
+                  onClick={() => setShowRsvpHint(false)}
+                >
+                  I understand
+                </button>
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>
