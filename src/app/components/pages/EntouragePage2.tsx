@@ -25,7 +25,7 @@ const ENTOURAGE2 = {
     "Ms. Danica Rose Aricayos",
     "Ms. Trisha Mae Lingad",
     "Ms. Joan Battung",
-    "Ms. Alyssa Charlotte Lopez",
+    "Ms. Alyssa Charlotte Velasco",
     "Ms. Alpha Joy Fallesgon",
     "Ms. Stephanie Jane Gonzales",
     "Ms. Kyla Clavecillas",
