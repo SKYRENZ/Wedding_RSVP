@@ -8,6 +8,8 @@ const FORM_ID =
 const FORM_ACTION = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
 const FORM_EMBED = `https://docs.google.com/forms/d/e/${FORM_ID}/viewform?embedded=true`;
 
+
+
 /* ─── Field entry IDs ───────────────────────────────────────
    To find the real IDs: open the published form URL in Chrome
    → right-click → View Page Source → Ctrl+F "entry."
@@ -67,9 +69,15 @@ export default function RSVPPage() {
   const [showEmbedded, setShowEmbedded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [formAccepting, setFormAccepting] = useState<boolean | null>(null);
 
   useEffect(() => {
     setMounted(true);
+    // Check live whether the Google Form is still accepting responses
+    fetch("/api/rsvp-status")
+      .then((r) => r.json())
+      .then((data: { accepting: boolean }) => setFormAccepting(data.accepting))
+      .catch(() => setFormAccepting(true)); // fail open
   }, []);
 
   useEffect(() => {
@@ -244,6 +252,56 @@ export default function RSVPPage() {
           View Confirmation Details
         </button>
         {confirmationModal}
+      </div>
+    );
+  }
+
+  /* ─── Loading state while we check the form status ─── */
+  if (formAccepting === null) {
+    return (
+      <div className="story-page rsvp-page rsvp-success">
+        <p className="rsvp-success-text" style={{ opacity: 0.6 }}>
+          Loading…
+        </p>
+      </div>
+    );
+  }
+
+  /* ─── RSVP Closed screen ─── */
+  if (!formAccepting) {
+    return (
+      <div className="story-page rsvp-page rsvp-success">
+        <div className="wax-seal" aria-hidden="true" style={{ fontSize: "2.5rem", lineHeight: 1 }}>
+          🕊️
+        </div>
+        <div className="story-divider" aria-hidden="true">
+          <span className="divider-vine left" />
+          <span className="divider-diamond">◆</span>
+          <span className="divider-vine right" />
+        </div>
+        <h2 className="rsvp-success-heading">RSVP is Now Closed</h2>
+        <p className="rsvp-success-text">
+          Thank you to everyone who replied. We're so grateful for your love
+          and support. We can't wait to celebrate with you!
+        </p>
+        <div className="story-divider" aria-hidden="true">
+          <span className="divider-vine left" />
+          <span className="divider-diamond">◆</span>
+          <span className="divider-vine right" />
+        </div>
+        <div className="rsvp-modal-assistance-card" style={{ maxWidth: 360 }}>
+          <p className="rsvp-modal-assistance">
+            For assistance kindly contact Mrs Vicky Derla:{" "}
+            <a href="tel:09162728940" className="rsvp-modal-phone">
+              0916 272 8940
+            </a>
+          </p>
+        </div>
+        <p className="story-vows">
+          With love,
+          <br />
+          Anjo &amp; Pam
+        </p>
       </div>
     );
   }
