@@ -271,9 +271,11 @@ export default function RSVPPage() {
   if (!formAccepting) {
     return (
       <div className="story-page rsvp-page rsvp-success">
-        <div className="wax-seal" aria-hidden="true" style={{ fontSize: "2.5rem", lineHeight: 1 }}>
-          🕊️
-        </div>
+        <img
+          src="/logo/Wordlogo ate transparent.png"
+          alt="Anjo & Pam"
+          style={{ width: 180, margin: "0 auto 0.5rem" }}
+        />
         <div className="story-divider" aria-hidden="true">
           <span className="divider-vine left" />
           <span className="divider-diamond">◆</span>
