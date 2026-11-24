@@ -29,7 +29,8 @@ const ENTOURAGE = {
       "Mr. Cleto Sescon",
       "Mr. John Elven Vega",
       "Mr. Loreto Sayson",
-      "Engr. Don Clover",
+      "Mr. Don Clover",
+      "Mr. Frank Loroso",
 
     ],
     bride: [
@@ -50,6 +51,7 @@ const ENTOURAGE = {
       "Mrs. Nelissa Vega",
       "Mrs. Shirley Sayson",
       "Mrs. Joyce Clover",
+      "Mrs. Angie Loroso",
       "Mrs. Nenita Putan",
       "Mrs. Gabriela Tañedo",
       "Mrs. Rosemarie Velasco",
